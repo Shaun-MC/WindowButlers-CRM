@@ -22,7 +22,6 @@ export const doSignInWithGoogle = async () => {
   const provider = new GoogleAuthProvider();
   const result = await signInWithPopup(auth, provider);
 
-  // add user to firestore
   return result;
 };
 
