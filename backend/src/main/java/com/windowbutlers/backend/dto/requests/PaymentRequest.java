@@ -1,6 +1,6 @@
 package com.windowbutlers.backend.dto.requests;
 
-import com.windowbutlers.backend.validation.ValidUUID;
+import com.windowbutlers.backend.validation.ValidID;
 import jakarta.validation.constraints.*;
 import lombok.Data;
 
@@ -8,8 +8,8 @@ import lombok.Data;
 public class PaymentRequest {
     
     @NotNull(message = "Client ID is required")
-    @ValidUUID(message = "Client ID must be a valid UUID")
-    private String clientID;
+    @ValidID(message = "Client ID must be a valid Integer")
+    private Integer clientID;
 
     @DecimalMin(value = "0.01", message = "Payment amount must be greater than 0")
     private Double cost;

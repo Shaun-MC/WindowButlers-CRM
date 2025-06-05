@@ -9,20 +9,19 @@ import com.windowbutlers.backend.dto.responses.IDResponse;
 import com.windowbutlers.backend.dto.responses.SuccessfulUpdateResponse;
 import org.springframework.stereotype.Service;
 import java.util.List;
-import java.util.UUID;
 
 @Service
 public interface ClientService {
     
     IDResponse createClient(ClientRequest client);
 
-    Clients getClient(UUID id);
+    Clients getClient(Integer id);
 
     List<Clients> getAllClients();
 
-    SuccessfulUpdateResponse updateEmail(UUID id, EmailUpdateRequest email);
+    SuccessfulUpdateResponse updateEmail(Integer id, EmailUpdateRequest email);
 
-    SuccessfulUpdateResponse updatePhoneNumber(UUID id, PhoneNumberUpdateRequest phoneNumber);
+    SuccessfulUpdateResponse updatePhoneNumber(Integer id, PhoneNumberUpdateRequest phoneNumber);
 
-    DeleteMessageResponse deleteClient(UUID id);
+    DeleteMessageResponse deleteClient(Integer id);
 }

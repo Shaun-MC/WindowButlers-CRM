@@ -14,7 +14,6 @@ import com.windowbutlers.backend.enums.LightColors;
 import com.windowbutlers.backend.exceptions.DataNotFoundException;
 import org.springframework.stereotype.Component;
 import java.util.List;
-import java.util.UUID;
 
 @Component
 public class ChristmasLightsServiceImpl implements ChristmasLightsService {
@@ -38,12 +37,12 @@ public class ChristmasLightsServiceImpl implements ChristmasLightsService {
         return new IDResponse(cl.getId()); 
     }
 
-    public LocationResponse getChristmasLightsStorageLocation(UUID id) {
+    public LocationResponse getChristmasLightsStorageLocation(Integer id) {
         
         return new LocationResponse(id, clRepo.findById(id).orElseThrow(() -> new DataNotFoundException("GetChristmasLightingStorageLocation: Christmas lighting ID not found in the database")).getStorageLocation());
     }
 
-    public List<ChristmasLights> getAllChristmasLightsByHomeID(UUID homeID) {
+    public List<ChristmasLights> getAllChristmasLightsByHomeID(Integer homeID) {
         
         return clRepo.findByHome_Id(homeID);
     }
@@ -58,7 +57,7 @@ public class ChristmasLightsServiceImpl implements ChristmasLightsService {
         return clRepo.findByInUse();
     }
 
-    public SuccessfulUpdateResponse updateStorageLocation(UUID id, StorageLocationUpdateRequest req) {
+    public SuccessfulUpdateResponse updateStorageLocation(Integer id, StorageLocationUpdateRequest req) {
         
         ChristmasLights cl = clRepo.findById(id).orElseThrow(() -> new DataNotFoundException("UpdateStorageLocation: Christmas lighting ID not found in the database"));
         String storageLocation = req.getStorageLocation();
@@ -69,7 +68,7 @@ public class ChristmasLightsServiceImpl implements ChristmasLightsService {
         return new SuccessfulUpdateResponse("storageLocation");
     }
 
-    public SuccessfulUpdateResponse updateInUse(UUID id, BooleanUpdateRequest req) {
+    public SuccessfulUpdateResponse updateInUse(Integer id, BooleanUpdateRequest req) {
         
         Boolean inUse = req.getValue();
         ChristmasLights cl = clRepo.findById(id).orElseThrow(() -> new DataNotFoundException("UpdateInUse: Christmas lighting ID not found in the database"));
@@ -80,11 +79,12 @@ public class ChristmasLightsServiceImpl implements ChristmasLightsService {
         return new SuccessfulUpdateResponse("inUse");
     }
 
-    public DeleteMessageResponse deleteChristmasLights(UUID id) {
+    public DeleteMessageResponse deleteChristmasLights(Integer id) {
 
         if (!clRepo.existsById(id)) {
             throw new DataNotFoundException("DeleteChristmasLights: Christmas lighting ID not found in the database");
         }
+        
         clRepo.deleteById(id);
         
         return new DeleteMessageResponse("Christmas Lights");

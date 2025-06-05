@@ -6,13 +6,12 @@ import org.springframework.stereotype.Repository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import java.util.List;
-import java.util.UUID;
 
 @Repository
-public interface PaymentRepo extends JpaRepository<Payments, UUID> {
+public interface PaymentRepo extends JpaRepository<Payments, Integer> {
     
     @Query("SELECT p FROM Payments p WHERE p.client.id = :clientID")
-    List<Payments> findByClientID(@Param("clientID") UUID clientID);
+    List<Payments> findByClientID(@Param("clientID") Integer clientID);
 }
 
 

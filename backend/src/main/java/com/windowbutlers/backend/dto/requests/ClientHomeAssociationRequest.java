@@ -10,10 +10,10 @@ import lombok.Data;
 public class ClientHomeAssociationRequest {
     
     @NotNull(message = "Client ID is required")
-    private String clientID;
+    private Integer clientID;
 
     @NotNull(message = "Home ID is required")
-    private String homeID;
+    private Integer homeID;
 
     @NotBlank(message = "Relation is required")
     @ValidEnum(enumClass = RelationshipsToHome.class)

@@ -6,7 +6,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
-import java.util.UUID;
 import java.util.List;
 
 @Entity
@@ -17,9 +16,9 @@ import java.util.List;
 public class Payments {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(columnDefinition = "uuid", updatable = false, nullable = false)
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(updatable = false, nullable = false)
+    private Integer id;
 
     // Foreign key to the job table
     @JsonBackReference
@@ -29,7 +28,7 @@ public class Payments {
     private Clients client;
 
     @JsonProperty("clientID")
-    public UUID getClientID() {
+    public Integer getClientID() {
         return client != null ? client.getId() : null;
     }
 

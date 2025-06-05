@@ -10,12 +10,11 @@ import com.windowbutlers.backend.dto.responses.DeleteMessageResponse;
 import com.windowbutlers.backend.dto.responses.IDResponse;
 import com.windowbutlers.backend.dto.responses.SuccessfulUpdateResponse;
 import com.windowbutlers.backend.service.JobService;
-import com.windowbutlers.backend.validation.ValidUUID;
+import com.windowbutlers.backend.validation.ValidID;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
-import java.util.UUID;
 import jakarta.validation.Valid;
 
 @RestController
@@ -28,7 +27,7 @@ public class JobController {
         this.jobService = jobService;
     }
 
-    // Passes Happy Path testing: 5/11/25
+    // Passes Happy Path testing: 6/5/25
     @PostMapping("/create")
     public ResponseEntity<?> createJob(@RequestBody @Valid JobRequest job) {
 
@@ -36,15 +35,15 @@ public class JobController {
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
-    // Passes Happy Path testing: 5/11/25
+    // Passes Happy Path testing: 6/5/25
     @GetMapping("/get/singleJob/{id}")
-    public ResponseEntity<?> getSingleJob(@PathVariable @ValidUUID String id) {
+    public ResponseEntity<?> getSingleJob(@PathVariable @ValidID Integer id) {
 
-        Jobs job = jobService.getJob(UUID.fromString(id));
+        Jobs job = jobService.getJob(id);
         return ResponseEntity.status(HttpStatus.OK).body(job);
     }
 
-    // Passes Happy Path testing: 5/11/25
+    // Passes Happy Path testing: 6/5/25
     @GetMapping("/get/allJobs")
     public ResponseEntity<?> getAllJobs() {
 
@@ -52,51 +51,51 @@ public class JobController {
         return ResponseEntity.status(HttpStatus.OK).body(jobs);
     }
 
-    // Passes Happy Path testing: 5/11/25
+    // Passes Happy Path testing: 6/5/25
     @PutMapping("update/laborHours/{id}")
-    public ResponseEntity<?> updateLaborHours(@PathVariable @ValidUUID String id, @RequestBody @Valid LaborHoursUpdateRequest req) {
+    public ResponseEntity<?> updateLaborHours(@PathVariable @ValidID Integer id, @RequestBody @Valid LaborHoursUpdateRequest req) {
 
-        SuccessfulUpdateResponse response = jobService.updateLaborHours(UUID.fromString(id), req);
+        SuccessfulUpdateResponse response = jobService.updateLaborHours(id, req);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
-    // Passes Happy Path testing: 5/11/25
+    // Passes Happy Path testing: 6/5/25
     @PutMapping("/update/notes/{id}")
-    public ResponseEntity<?> updateJobNotes(@PathVariable @ValidUUID String id, @RequestBody @Valid NotesUpdateRequest req) {
+    public ResponseEntity<?> updateJobNotes(@PathVariable @ValidID Integer id, @RequestBody @Valid NotesUpdateRequest req) {
 
-        SuccessfulUpdateResponse response = jobService.updateJobNotes(UUID.fromString(id), req);
+        SuccessfulUpdateResponse response = jobService.updateJobNotes(id, req);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
-    // Passes Happy Path testing: 5/11/25
+    // Passes Happy Path testing: 6/5/25
     @PutMapping("/update/difficulty/{id}")
-    public ResponseEntity<?> updateJobDifficulty(@PathVariable @ValidUUID String id, @RequestBody @Valid DifficultyUpdateRequest req) {
+    public ResponseEntity<?> updateJobDifficulty(@PathVariable @ValidID Integer id, @RequestBody @Valid DifficultyUpdateRequest req) {
 
-        SuccessfulUpdateResponse response = jobService.updateJobDifficulty(UUID.fromString(id), req);
+        SuccessfulUpdateResponse response = jobService.updateJobDifficulty(id, req);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
-    // Passes Happy Path testing: 5/11/25
+    // Passes Happy Path testing: 6/5/25
     @PutMapping("update/isPaid/{id}")
-    public ResponseEntity<?> updateIsPaid(@PathVariable @ValidUUID String id, @RequestBody @Valid BooleanUpdateRequest req) {
+    public ResponseEntity<?> updateIsPaid(@PathVariable @ValidID Integer id, @RequestBody @Valid BooleanUpdateRequest req) {
 
-        SuccessfulUpdateResponse response = jobService.updateIsPaid(UUID.fromString(id), req);
+        SuccessfulUpdateResponse response = jobService.updateIsPaid(id, req);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
-    // Passes Happy Path testing: 5/11/25
+    // Passes Happy Path testing: 6/5/25
     @PutMapping("update/addJobToPayment/{jobID}/{paymentID}")
-    public ResponseEntity<?> addJobToPayment(@PathVariable @ValidUUID String jobID, @PathVariable String paymentID) {
+    public ResponseEntity<?> addJobToPayment(@PathVariable @ValidID Integer jobID, @PathVariable @ValidID Integer paymentID) {
         
-        jobService.addJobToPayment(UUID.fromString(jobID), UUID.fromString(paymentID));
+        jobService.addJobToPayment(jobID, paymentID);
         return ResponseEntity.status(HttpStatus.OK).body(String.format("Added Job %s to Payment %s", jobID, paymentID));
     }
 
-    // Passes Happy Path testing: 5/11/25
+    // Passes Happy Path testing: 6/5/25
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<?> deleteJob(@PathVariable @ValidUUID String id) {
+    public ResponseEntity<?> deleteJob(@PathVariable @ValidID Integer id) {
 
-        DeleteMessageResponse response = jobService.deleteJob(UUID.fromString(id));
+        DeleteMessageResponse response = jobService.deleteJob(id);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 }

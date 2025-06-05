@@ -10,10 +10,8 @@ import com.windowbutlers.backend.dto.requests.PowerSourceLocationUpdateRequest;
 import com.windowbutlers.backend.dto.responses.DeleteMessageResponse;
 import com.windowbutlers.backend.dto.responses.IDResponse;
 import com.windowbutlers.backend.dto.responses.SuccessfulUpdateResponse;
-
 import org.springframework.stereotype.Component;
 import java.util.List;
-import java.util.UUID;
 
 @Component
 public class HomeServiceImpl implements HomeService {
@@ -31,10 +29,10 @@ public class HomeServiceImpl implements HomeService {
         home.setNotes(req.getNotes());
         home.setPictureDirectoryURL(req.getPictureDirectoryURL());
         home.setAddressLine1(req.getAddressLine1());
-        home.setAddressLine2(req.getAddressLine2());
         home.setCity(req.getCity());
         home.setZipCode(req.getZipCode());
         home.setPowerSourceLocation(req.getPowerSourceLocation());
+        home.setHasOwnLights(req.getHasOwnLights());
 
         homeRepo.save(home);
 
@@ -42,7 +40,7 @@ public class HomeServiceImpl implements HomeService {
     }
 
     @Override
-    public Homes getHome(UUID id) {
+    public Homes getHome(Integer id) {
 
         return homeRepo.findById(id).orElseThrow(() -> new DataNotFoundException("GetHome: Home ID not found in the database"));
     }
@@ -53,7 +51,7 @@ public class HomeServiceImpl implements HomeService {
     }
 
     @Override
-    public SuccessfulUpdateResponse updateNotes(UUID id, NotesUpdateRequest req) {
+    public SuccessfulUpdateResponse updateNotes(Integer id, NotesUpdateRequest req) {
         
         String notes = req.getNotes();
 
@@ -65,7 +63,7 @@ public class HomeServiceImpl implements HomeService {
     }
 
     @Override
-    public SuccessfulUpdateResponse updatePowerSourceLocation(UUID id, PowerSourceLocationUpdateRequest req) {
+    public SuccessfulUpdateResponse updatePowerSourceLocation(Integer id, PowerSourceLocationUpdateRequest req) {
 
         String location = req.getPowerSourceLocation();
 
@@ -77,7 +75,7 @@ public class HomeServiceImpl implements HomeService {
     }
 
     @Override
-    public DeleteMessageResponse deleteHome(UUID id) {
+    public DeleteMessageResponse deleteHome(Integer id) {
 
         if (!homeRepo.existsById(id)) {
             throw new DataNotFoundException("DeleteHome: Home ID not found in the database");

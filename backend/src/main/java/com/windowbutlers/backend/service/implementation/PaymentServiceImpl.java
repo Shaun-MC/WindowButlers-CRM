@@ -16,7 +16,6 @@ import com.windowbutlers.backend.dto.responses.PaymentFullfilledResponse.JobSumm
 import com.windowbutlers.backend.entity.Jobs;
 import org.springframework.stereotype.Component;
 import java.util.List;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Component
@@ -33,7 +32,7 @@ public class PaymentServiceImpl implements PaymentService {
     @Override
     public IDResponse createPayment(PaymentRequest request) {
 
-        UUID clientID = UUID.fromString(request.getClientID());
+        Integer clientID = request.getClientID();
         
         Payments payment = new Payments();
         Clients client = clientRepo.findById(clientID).orElseThrow(() -> new DataNotFoundException("Client not found"));
@@ -47,7 +46,7 @@ public class PaymentServiceImpl implements PaymentService {
     }
 
     @Override
-    public Payments getPayment(UUID id) {
+    public Payments getPayment(Integer id) {
 
         return paymentRepo.findById(id).orElseThrow(() -> new DataNotFoundException("GetPayment: Payment not found in the database"));
     }
@@ -58,7 +57,7 @@ public class PaymentServiceImpl implements PaymentService {
     }
 
     @Override
-    public List<Payments> getPaymentsByClientID(UUID clientID) {
+    public List<Payments> getPaymentsByClientID(Integer clientID) {
 
         List<Payments> payments = paymentRepo.findByClientID(clientID);
         if (payments.isEmpty()) {
@@ -68,7 +67,7 @@ public class PaymentServiceImpl implements PaymentService {
     }
 
     @Override
-    public PaymentFullfilledResponse isPaymentFullfilled(UUID id) {
+    public PaymentFullfilledResponse isPaymentFullfilled(Integer id) {
         
         Payments payment = paymentRepo.findById(id)
                 .orElseThrow(() -> new DataNotFoundException("isPaymentFullfilled: Payment not found in the database"));
@@ -99,7 +98,7 @@ public class PaymentServiceImpl implements PaymentService {
     }
 
     @Override
-    public SuccessfulUpdateResponse updateCost(UUID id, CostUpdateRequest req) {
+    public SuccessfulUpdateResponse updateCost(Integer id, CostUpdateRequest req) {
 
         Double newCost = req.getCost();
 
@@ -111,7 +110,7 @@ public class PaymentServiceImpl implements PaymentService {
     }
 
     @Override
-    public DeleteMessageResponse deletePayment(UUID id) {
+    public DeleteMessageResponse deletePayment(Integer id) {
 
         if (!paymentRepo.existsById(id)) {
             throw new DataNotFoundException("DeletePayment: Payment not found in the database");

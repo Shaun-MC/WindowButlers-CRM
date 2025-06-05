@@ -2,7 +2,7 @@ package com.windowbutlers.backend.dto.requests;
 
 import com.windowbutlers.backend.enums.StyleLabels;
 import com.windowbutlers.backend.validation.ValidEnum;
-import com.windowbutlers.backend.validation.ValidUUID;
+import com.windowbutlers.backend.validation.ValidID;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Min;
 import lombok.Data;
@@ -11,8 +11,8 @@ import lombok.Data;
 public class StyleRequest {
     
     @NotBlank(message = "Job ID is required")
-    @ValidUUID
-    private String jobID;
+    @ValidID
+    private Integer jobID;
 
     @NotBlank(message = "Style label is required")
     @ValidEnum(enumClass = StyleLabels.class)

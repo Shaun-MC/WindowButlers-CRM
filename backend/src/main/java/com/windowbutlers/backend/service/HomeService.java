@@ -9,20 +9,19 @@ import com.windowbutlers.backend.dto.responses.IDResponse;
 import com.windowbutlers.backend.dto.responses.SuccessfulUpdateResponse;
 import org.springframework.stereotype.Service;
 import java.util.List;
-import java.util.UUID;
 
 @Service
 public interface HomeService {
     
     IDResponse createHome(HomeRequest home);
 
-    Homes getHome(UUID id);
+    Homes getHome(Integer id);
 
     List<Homes> getAllHomes();
 
-    SuccessfulUpdateResponse updateNotes(UUID id, NotesUpdateRequest req);
+    SuccessfulUpdateResponse updateNotes(Integer id, NotesUpdateRequest req);
 
-    SuccessfulUpdateResponse updatePowerSourceLocation(UUID id, PowerSourceLocationUpdateRequest req);
+    SuccessfulUpdateResponse updatePowerSourceLocation(Integer id, PowerSourceLocationUpdateRequest req);
 
-    DeleteMessageResponse deleteHome(UUID id);
+    DeleteMessageResponse deleteHome(Integer id);
 }

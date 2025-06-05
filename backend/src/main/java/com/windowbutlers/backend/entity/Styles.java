@@ -1,7 +1,5 @@
 package com.windowbutlers.backend.entity;
 
-import java.util.UUID;
-
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.windowbutlers.backend.enums.StyleLabels;
@@ -17,9 +15,9 @@ import lombok.*;
 public class Styles {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(columnDefinition = "uuid", updatable = false, nullable = false)
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(updatable = false, nullable = false)
+    private Integer id;
 
     @JsonBackReference
     @NotNull

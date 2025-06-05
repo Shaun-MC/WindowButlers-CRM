@@ -10,7 +10,6 @@ import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import java.util.List;
 import java.sql.Date;
-import java.util.UUID;
 
 @Entity
 @Table(name = "jobs")
@@ -20,10 +19,9 @@ import java.util.UUID;
 public class Jobs {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(columnDefinition = "uuid", name = "id", updatable = false, nullable = false)
-    @NotNull
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(updatable = false, nullable = false)
+    private Integer id;
 
     @JsonProperty("title")
     @Enumerated(EnumType.STRING)
@@ -62,7 +60,7 @@ public class Jobs {
     private Homes home;
 
     @JsonProperty("homeID")
-    public UUID getClientID() {
+    public Integer getClientID() {
         return home != null ? home.getId() : null;
     }
 
@@ -73,7 +71,7 @@ public class Jobs {
     private Payments payment;
 
     @JsonProperty("paymentID")
-    public UUID getPaymentID() {
+    public Integer getPaymentID() {
         return payment != null ? payment.getId() : null;
     }
 

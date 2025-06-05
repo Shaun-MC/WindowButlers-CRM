@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
-import java.util.UUID;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -12,7 +11,7 @@ import java.util.UUID;
 public class EmailResponce {
     
     @JsonProperty("id")
-    private UUID id; 
+    private Integer id; 
 
     @JsonProperty("email")
     private String email;

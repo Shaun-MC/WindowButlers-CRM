@@ -8,20 +8,21 @@ import com.windowbutlers.backend.dto.responses.IDResponse;
 import com.windowbutlers.backend.dto.responses.SuccessfulUpdateResponse;
 import org.springframework.stereotype.Service;
 import java.util.List;
-import java.util.UUID;
 
 @Service
 public interface StyleService {
     
     IDResponse createStyle(StyleRequest style);
 
-    Styles getStyle(UUID ID);
+    Styles getStyle(Integer ID);
 
-    String getStyleLabel(UUID ID);
+    String getStyleLabel(Integer ID);
 
     List<Styles> getAllStyles();
 
-    SuccessfulUpdateResponse updateCounts(UUID ID, CountsUpdateRequest req);
+    SuccessfulUpdateResponse updateCounts(Integer ID, CountsUpdateRequest req);
 
-    DeleteMessageResponse deleteStyle(UUID ID);
+    void addStyleToJob(Integer styleID, Integer jobID);
+    
+    DeleteMessageResponse deleteStyle(Integer ID);
 }

@@ -16,9 +16,6 @@ public class HomeRequest {
     @Size(min = 2, max = 255, message = "Address line 1 must be between 2 and 255 characters")
     private String addressLine1;
 
-    @Size(max = 255, message = "Address line 2 must be less then 255 characters")
-    private String addressLine2;
-
     @NotBlank(message = "Zip code is required")
     @Size(max = 255, message = "City must be less then 255 characters")
     private String city;
@@ -29,4 +26,6 @@ public class HomeRequest {
 
     @Size(max = 100, message = "Power source location must be less then 100 characters")
     private String powerSourceLocation;
+
+    private Boolean hasOwnLights;
 }

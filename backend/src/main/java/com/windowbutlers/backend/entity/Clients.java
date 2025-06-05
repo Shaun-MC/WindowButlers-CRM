@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
-import java.util.UUID;
+
 import java.util.List;
 
 @Entity
@@ -16,9 +16,9 @@ import java.util.List;
 public class Clients {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(columnDefinition = "uuid", updatable = false, nullable = false)
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(updatable = false, nullable = false)
+    private Integer id;
 
     @JsonProperty("firstName")
     @NotNull
@@ -37,10 +37,6 @@ public class Clients {
     @JsonProperty("phone_number")
     @Column(name="phone_number", nullable=true, unique=true)
     private String phoneNumber;
-
-    @JsonProperty("hasOwnLights")
-    @Column(name="has_own_lights", nullable=true)
-    private Boolean hasOwnLights;
 
     @JsonManagedReference
     @OneToMany(mappedBy = "client", fetch = FetchType.LAZY)

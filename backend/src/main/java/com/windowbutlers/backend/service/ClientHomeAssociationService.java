@@ -6,10 +6,8 @@ import com.windowbutlers.backend.dto.requests.RelationshipUpdateRequest;
 import com.windowbutlers.backend.dto.responses.AssociationResponse;
 import com.windowbutlers.backend.dto.responses.DeleteMessageResponse;
 import com.windowbutlers.backend.dto.responses.SuccessfulUpdateResponse;
-
 import org.springframework.stereotype.Service;
 import java.util.List;
-import java.util.UUID;
 
 @Service
 public interface ClientHomeAssociationService {
@@ -18,15 +16,15 @@ public interface ClientHomeAssociationService {
 
     List<ClientHomeAssociationDTO> getAllAssociations();
 
-    List<ClientHomeAssociationDTO> getHomesForClient(UUID clientID);
+    List<ClientHomeAssociationDTO> getHomesForClient(Integer clientID);
 
-    List<ClientHomeAssociationDTO> getClientsForHome(UUID homeID);
+    List<ClientHomeAssociationDTO> getClientsForHome(Integer homeID);
 
-    List<String> getAllAssociationsForHome(UUID homeID);
+    List<String> getAllAssociationsForHome(Integer homeID);
     
-    AssociationResponse getAssociation(UUID clientID, UUID homeID);
+    AssociationResponse getAssociation(Integer clientID, Integer homeID);
 
-    SuccessfulUpdateResponse updateAssociation(UUID clientID, UUID homeID, RelationshipUpdateRequest relation);
+    SuccessfulUpdateResponse updateAssociation(Integer clientID, Integer homeID, RelationshipUpdateRequest relation);
 
-    DeleteMessageResponse deleteAssociation(UUID clientID, UUID homeID);
+    DeleteMessageResponse deleteAssociation(Integer clientID, Integer homeID);
 }

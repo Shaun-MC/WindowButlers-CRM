@@ -9,22 +9,21 @@ import com.windowbutlers.backend.dto.responses.SuccessfulUpdateResponse;
 import com.windowbutlers.backend.entity.Payments;
 import org.springframework.stereotype.Service;
 import java.util.List;
-import java.util.UUID;
 
 @Service
 public interface PaymentService {
 
     IDResponse createPayment(PaymentRequest payment);
 
-    Payments getPayment(UUID id);
+    Payments getPayment(Integer id);
 
     List<Payments> getAllPayments();
 
-    List<Payments> getPaymentsByClientID(UUID clientID);
+    List<Payments> getPaymentsByClientID(Integer clientID);
 
-    PaymentFullfilledResponse isPaymentFullfilled(UUID id);
+    PaymentFullfilledResponse isPaymentFullfilled(Integer id);
 
-    SuccessfulUpdateResponse updateCost(UUID id, CostUpdateRequest req);
+    SuccessfulUpdateResponse updateCost(Integer id, CostUpdateRequest req);
 
-    DeleteMessageResponse deletePayment(UUID id);
+    DeleteMessageResponse deletePayment(Integer id);
 }

@@ -5,7 +5,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
-import java.util.UUID;
 
 @Entity
 @Table(name = "clients_to_homes", uniqueConstraints = @UniqueConstraint(columnNames = {"client_id", "home_id"}))
@@ -35,15 +34,16 @@ public class ClientHomeAssociation {
     @Column(name = "relationship", nullable = false)
     private RelationshipsToHome relationship;
 
-    public void setClientID(UUID clientID, Clients client) {
+    public void setClientID(Integer clientID, Clients client) {
         if (this.id == null) {
             this.id = new ClientHomeKey();
         }
+
         this.id.setClientID(clientID);
         this.client = client;
     }
 
-    public void setHomeID(UUID homeID, Homes home) {
+    public void setHomeID(Integer homeID, Homes home) {
         if (this.id == null) {
             this.id = new ClientHomeKey();
         }

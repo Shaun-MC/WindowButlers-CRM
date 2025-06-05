@@ -24,6 +24,4 @@ public class ClientRequest {
     @ValidPhoneNumber(message = "Phone number is in an invalid format")
     @Size(min = 12, max = 12, message = "Phone number must 12 characters. EX: '123-456-7890'")
     private String phoneNumber;
-
-    private Boolean hasOwnLights;
 }

@@ -26,7 +26,7 @@ public class JobRequest {
 
     @JsonProperty("homeID")
     @NotNull(message = "Home id is required")
-    private String homeID;
+    private Integer homeID;
 
     @NotNull(message = "Is paid is required")
     private Boolean isPaid;

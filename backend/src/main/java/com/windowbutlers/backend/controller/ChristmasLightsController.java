@@ -9,13 +9,12 @@ import com.windowbutlers.backend.dto.responses.DeleteMessageResponse;
 import com.windowbutlers.backend.dto.responses.IDResponse;
 import com.windowbutlers.backend.dto.responses.LocationResponse;
 import com.windowbutlers.backend.dto.responses.SuccessfulUpdateResponse;
-import com.windowbutlers.backend.validation.ValidUUID;
+import com.windowbutlers.backend.validation.ValidID;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import jakarta.validation.Valid;
 import java.util.List;
-import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/christmas-lights")
@@ -37,10 +36,10 @@ public class ChristmasLightsController {
 
     // Passes Happy Path testing: 5/11/2025
     @GetMapping("/get/storageLocation/{id}")
-    public ResponseEntity<?> getChristmasLightsStorageLocation(@PathVariable @ValidUUID String id) {
+    public ResponseEntity<?> getChristmasLightsStorageLocation(@PathVariable @ValidID Integer id) {
 
-        LocationResponse storageLocation = clService.getChristmasLightsStorageLocation(UUID.fromString(id));
-        return ResponseEntity.status(HttpStatus.OK).body(storageLocation);
+        LocationResponse response = clService.getChristmasLightsStorageLocation(id);
+        return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
     // Passes Happy Path testing: 5/11/2025
@@ -53,13 +52,13 @@ public class ChristmasLightsController {
 
     // Passes Happy Path testing: 5/11/2025
     @GetMapping("/get/allChristmasLightsByHome/{homeID}")
-    public ResponseEntity<?> getAllChristmasLightsByHomeID(@PathVariable @ValidUUID String homeID) {
+    public ResponseEntity<?> getAllChristmasLightsByHomeID(@PathVariable @ValidID Integer homeID) {
 
-        List<ChristmasLights> cl = clService.getAllChristmasLightsByHomeID(UUID.fromString(homeID));
+        List<ChristmasLights> cl = clService.getAllChristmasLightsByHomeID(homeID);
         return ResponseEntity.status(HttpStatus.OK).body(cl);
     }
 
-    // Passes Happy Path testing: 5/11/2025 5/11/2025
+    // Passes Happy Path testing: 5/11/2025
     @GetMapping("/get/allInUse")
     public ResponseEntity<?> getAllInUseChristmasLights() {
 
@@ -67,27 +66,27 @@ public class ChristmasLightsController {
         return ResponseEntity.status(HttpStatus.OK).body(cl);
     }
 
-    // Passes Happy Path testing: 5/11/2025 5/11/2025
+    // Passes Happy Path testing: 5/11/2025
     @PutMapping("/update/storageLocation/{id}")
-    public ResponseEntity<?> updateChristmasLightsStorageLocation(@PathVariable @ValidUUID String id, @RequestBody @Valid StorageLocationUpdateRequest storageLocation) {
+    public ResponseEntity<?> updateChristmasLightsStorageLocation(@PathVariable @ValidID Integer id, @RequestBody @Valid StorageLocationUpdateRequest storageLocation) {
 
-        SuccessfulUpdateResponse response = clService.updateStorageLocation(UUID.fromString(id), storageLocation);
+        SuccessfulUpdateResponse response = clService.updateStorageLocation(id, storageLocation);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
     // Passes Happy Path testing: 5/11/2025
     @PutMapping("/update/inUse/{id}")
-    public ResponseEntity<?> updateChristmasLightsInUse(@PathVariable @ValidUUID String id, @RequestBody @Valid BooleanUpdateRequest req) {
+    public ResponseEntity<?> updateChristmasLightsInUse(@PathVariable @ValidID Integer id, @RequestBody @Valid BooleanUpdateRequest req) {
 
-        SuccessfulUpdateResponse response = clService.updateInUse(UUID.fromString(id), req);
+        SuccessfulUpdateResponse response = clService.updateInUse(id, req);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
     // Passes Happy Path testing: 5/11/2025
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<?> deleteChristmasLights(@PathVariable @ValidUUID String id) {
+    public ResponseEntity<?> deleteChristmasLights(@PathVariable @ValidID Integer id) {
 
-        DeleteMessageResponse response = clService.deleteChristmasLights(UUID.fromString(id));
+        DeleteMessageResponse response = clService.deleteChristmasLights(id);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 }

@@ -13,7 +13,6 @@ import com.windowbutlers.backend.repository.ClientRepo;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.annotation.Validated;
 import java.util.List;
-import java.util.UUID;
 
 @Component
 @Validated
@@ -33,7 +32,6 @@ public class ClientServiceImpl implements ClientService {
         client.setLastName(request.getLastName());
         client.setEmail(request.getEmail());
         client.setPhoneNumber(request.getPhoneNumber());
-        client.setHasOwnLights(request.getHasOwnLights());
 
         clientRepo.save(client);
 
@@ -41,7 +39,7 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
-    public Clients getClient(UUID id) {
+    public Clients getClient(Integer id) {
         
         return clientRepo.findById(id).orElseThrow(() -> new DataNotFoundException("GetClient: Client ID not found in the database"));
     }
@@ -52,35 +50,35 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
-    public SuccessfulUpdateResponse updateEmail(UUID id, EmailUpdateRequest req) {
+    public SuccessfulUpdateResponse updateEmail(Integer id, EmailUpdateRequest req) {
         
         String email = req.getEmail();
         Clients client = clientRepo.findById(id).orElseThrow(() -> new DataNotFoundException("UpdateEmail: Client ID not found in the database"));
         client.setEmail(email);
         clientRepo.save(client);
 
-        return new SuccessfulUpdateResponse("Email updated successfully");
+        return new SuccessfulUpdateResponse("Email");
     }
 
     @Override
-    public SuccessfulUpdateResponse updatePhoneNumber(UUID id, PhoneNumberUpdateRequest req) {
+    public SuccessfulUpdateResponse updatePhoneNumber(Integer id, PhoneNumberUpdateRequest req) {
         
         String phoneNumber = req.getPhoneNumber();
         Clients client = clientRepo.findById(id).orElseThrow(() -> new RuntimeException("UpdatePhoneNumber: Client ID not found in the database"));
         client.setPhoneNumber(phoneNumber);
         clientRepo.save(client);
 
-        return new SuccessfulUpdateResponse("Phone number updated successfully");
+        return new SuccessfulUpdateResponse("Phone number");
     }
 
     @Override
-    public DeleteMessageResponse deleteClient(UUID id) {
+    public DeleteMessageResponse deleteClient(Integer id) {
 
         if (!clientRepo.existsById(id)) {
             throw new DataNotFoundException("DeleteClient: Client ID not found in the database");
         }
         clientRepo.deleteById(id);
 
-        return new DeleteMessageResponse("Client deleted successfully");
+        return new DeleteMessageResponse("Client");
     }
 }

@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import java.util.List;
-import java.util.UUID;
+
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -16,9 +16,9 @@ import java.util.UUID;
 public class Homes {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(columnDefinition = "uuid", updatable = false, nullable = false)
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(updatable = false, nullable = false)
+    private Integer id;
 
     @JsonProperty("notes")
     @Column(nullable=true)
@@ -33,10 +33,6 @@ public class Homes {
     @Column(name="address_line_1", nullable=false)
     private String addressLine1;
 
-    @JsonProperty("addressLine2")
-    @Column(name="address_line_2", nullable = true)
-    private String addressLine2;
-
     @JsonProperty("city")
     @NotNull
     @Column(nullable = false)
@@ -50,6 +46,10 @@ public class Homes {
     @JsonProperty("powerSourceLocation")
     @Column(name="power_source_location", nullable = true)
     private String powerSourceLocation;
+
+    @JsonProperty("hasOwnLights")
+    @Column(name="has_own_lights", nullable=true)
+    private Boolean hasOwnLights;
 
     @JsonManagedReference
     @OneToMany(mappedBy = "home", cascade = CascadeType.ALL, orphanRemoval = true)
