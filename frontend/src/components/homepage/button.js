@@ -41,41 +41,13 @@ class Button {
     // Static method to create all buttons
     static createAllButtons() {
         return [
-            new Button(
-                1,
-                ManageDataIcon,
-                "Manage Data"
-            ),
-            new Button(
-                2,
-                ReferenceMaterialIcon,
-                "Reference Material"
-            ),
-            new Button(
-                3,
-                MetricsDashboardIcon,
-                "Metrics Dashboard"
-            ),
-            new Button(
-                4,
-                RouteJobsIcon,
-                "Route-Jobs",
-            ),
-            new Button(
-                5, 
-                ClientOutreachIcon,
-                "Client Outreach"
-            ),
-            new Button(
-                6, 
-                AppointmentSchedulingIcon,
-                "Appointment Scheduling"
-            ),
-            new Button(
-                7,
-                PaymentProcessingIcon,
-                "Payment Processing"
-            ),
+            new Button(1, ManageDataIcon, "Manage Data"),
+            new Button(2, ReferenceMaterialIcon, "Reference Material"),
+            new Button(3, MetricsDashboardIcon, "Metrics Dashboard"),
+            new Button(4, RouteJobsIcon, "Route-Jobs"),
+            new Button(5, ClientOutreachIcon, "Client Outreach"),
+            new Button(6, AppointmentSchedulingIcon, "Appointment Scheduling"),
+            new Button(7, PaymentProcessingIcon, "Payment Processing"),
         ];
     }
 }
