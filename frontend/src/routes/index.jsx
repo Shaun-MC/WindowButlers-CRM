@@ -1,76 +1,74 @@
-import { lazy } from 'react';
+import { useRoutes } from "react-router-dom";
 
-// Lazy load components for better performance
-const HomePage = lazy(() => import("../components/homepage/homepage"));
-const ManageDataPage = lazy(() => import("../components/features/manage-data/index2.jsx"));
-const ReferenceMaterialPage = lazy(() => import("../components/features/reference-material/index.js"));
-const MetricsDashboardPage = lazy(() => import("../components/features/metrics-dashboard/index.js"));
-const RouteJobsPage = lazy(() => import("../components/features/route-jobs/index.js"));
-const ClientOutreachPage = lazy(() => import("../components/features/client-outreach/index.js"));
-const AppointmentSchedulingPage = lazy(() => import("../components/features/appt-scheduling/index.js"));
-const PaymentProcessingPage = lazy(() => import("../components/features/payment-processing/index.js"));
-const SettingsPage = lazy(() => import("../components/settings/index.js"));
-const AccountPage = lazy(() => import("../components/account/index.js"));
+import Login from "../components/login/loginpage.jsx";
+import HomePage from "../components/homepage/homepage";
+import ManageDataPage from "../components/features/manage-data/index2.jsx";
+import ReferenceMaterialPage from "../components/features/reference-material/index.js";
+import MetricsDashboardPage from "../components/features/metrics-dashboard/index.js";
+import RouteJobsPage from "../components/features/route-jobs/index.js";
+import ClientOutreachPage from "../components/features/client-outreach/index.js";
+import AppointmentSchedulingPage from "../components/features/appt-scheduling/index.js";
+import PaymentProcessingPage from "../components/features/payment-processing/index.js";
+import SettingsPage from "../components/settings/index.js";
+import AccountPage from "../components/account/index.js";
 
-export const appRoutes = [
-    {
-        path: "/home",
-        component: HomePage,
-        title: "Home",
-        icon: "home"
-    },
-    {
-        path: "/manage-data",
-        component: ManageDataPage,
-        title: "Manage Data",
-        icon: "database"
-    },
-    {
-        path: "/reference-material",
-        component: ReferenceMaterialPage,
-        title: "Reference Material",
-        icon: "book"
-    },
-    {
-        path: "/metrics-dashboard",
-        component: MetricsDashboardPage,
-        title: "Metrics Dashboard",
-        icon: "chart"
-    },
-    {
-        path: "/route-jobs",
-        component: RouteJobsPage,
-        title: "Route Jobs",
-        icon: "route"
-    },
-    {
-        path: "/client-outreach",
-        component: ClientOutreachPage,
-        title: "Client Outreach",
-        icon: "users"
-    },
-    {
-        path: "/appointment-scheduling",
-        component: AppointmentSchedulingPage,
-        title: "Appointment Scheduling",
-        icon: "calendar"
-    },
-    {
-        path: "/payment-processing",
-        component: PaymentProcessingPage,
-        title: "Payment Processing",
-        icon: "credit-card"
-    },
-    {
-        path: "/settings",
-        component: SettingsPage,
-        title: "Settings",
-        icon: "settings"
-    },
-    {
-        path: "/account",
-        component: AccountPage,
-        title: "Account",
-        icon: "user"
-    }
-];
+const AppRouter = () => {
+    const routesArray = [
+        {
+            path: "*",
+            element: <Login />,
+        },
+        {
+            path: "/",
+            element: <Login />,
+        },
+        {
+            path: "/login",
+            element: <Login />,
+        },
+        {
+            path: "/home",
+            element: <HomePage />,
+        },
+        {
+            path: "/manage-data",
+            element: <ManageDataPage />,
+        },
+        {
+            path: "/reference-material",
+            element: <ReferenceMaterialPage />,
+        },
+        {
+            path: "/metrics-dashboard",
+            element: <MetricsDashboardPage />,
+        },
+        {
+            path: "/route-jobs",
+            element: <RouteJobsPage />,
+        },
+        {
+            path: "/client-outreach",
+            element: <ClientOutreachPage />,
+        },
+        {
+            path: "/appointment-scheduling",
+            element: <AppointmentSchedulingPage />,
+        },
+        {
+            path: "/payment-processing",
+            element: <PaymentProcessingPage />,
+        },
+        {
+            path: "/settings",
+            element: <SettingsPage />,
+        },
+        {
+            path: "/account",
+            element: <AccountPage />,
+        },
+    ];
+
+    return useRoutes(routesArray);
+};
+
+export default AppRouter;

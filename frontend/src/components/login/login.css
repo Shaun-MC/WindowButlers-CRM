@@ -148,7 +148,7 @@
     /* px-4 py-2 */
     color: white;
     /* text-white */
-    font-weight: 500;
+    font-weight: 1000;
 
     font-size: 1rem;
     /* font-medium */
@@ -200,7 +200,7 @@
     /* text-sm */
     color: #000000;
     /* text-black */
-    font-weight: 500;
+    font-weight: 1000;
     /* font-medium */
     background-color: transparent;
     cursor: pointer;
