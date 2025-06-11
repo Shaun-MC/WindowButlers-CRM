@@ -1,11 +1,11 @@
 // Button.js - Separate Button class file
-import { ReactComponent as ManageDataIcon } from './icons/account-setting-02-stroke-rounded.svg';
-import { ReactComponent as ReferenceMaterialIcon } from './icons/album-02-stroke-rounded.svg';
-import { ReactComponent as MetricsDashboardIcon } from './icons/analytics-up-stroke-rounded.svg';
-import { ReactComponent as RouteJobsIcon } from './icons/route-block-stroke-rounded.svg';
-import { ReactComponent as ClientOutreachIcon } from './icons/megaphone-03-stroke-rounded.svg';
-import { ReactComponent as AppointmentSchedulingIcon } from './icons/calendar-03-stroke-rounded.svg';
-import { ReactComponent as PaymentProcessingIcon } from './icons/credit-card-stroke-rounded.svg';
+import { ReactComponent as ManageDataIcon } from '../../icons/account-settings.svg';
+import { ReactComponent as ReferenceMaterialIcon } from '../../icons/reference-material.svg';
+import { ReactComponent as MetricsDashboardIcon } from '../../icons/metrics.svg';
+import { ReactComponent as RouteJobsIcon } from '../../icons/route.svg';
+import { ReactComponent as ClientOutreachIcon } from '../../icons/outreach.svg';
+import { ReactComponent as AppointmentSchedulingIcon } from '../../icons/calender.svg';
+import { ReactComponent as PaymentProcessingIcon } from '../../icons/payment.svg';
 
 class Button {
     constructor(id, icon, text) {

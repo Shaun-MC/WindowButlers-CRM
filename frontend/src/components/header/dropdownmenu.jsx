@@ -2,9 +2,9 @@ import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { doSignOut } from '../../firebase/auth.js';
 import { useAuth } from '../../contexts/auth/index.jsx';
-import { ReactComponent as LogoutIcon } from './icons/logout-2-svgrepo-com.svg';
-import { ReactComponent as SettingsIcon } from './icons/settings-svgrepo-com.svg'
-import { ReactComponent as PersonIcon } from './icons/person-svgrepo-com.svg';
+import { ReactComponent as LogoutIcon } from '../../icons/logout.svg';
+import { ReactComponent as SettingsIcon } from '../../icons/settings.svg'
+import { ReactComponent as PersonIcon } from '../../icons/person.svg';
 
 import './header.css';
 
