@@ -1,0 +1,445 @@
+/* Header Styles */
+.header {
+    border-bottom: 2px solid #004aa7;
+    /* Assuming darkBlue is similar to blue-800 */
+    padding: 0.5rem 0;
+}
+
+.header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    /* Add some padding for smaller screens */
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+/* Left side - Logo and Brand */
+.brand-section {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    min-width: 0;
+    /* Allow flexbox to shrink */
+}
+
+.logo-container {
+    margin-right: 0.75rem;
+    flex-shrink: 0;
+    /* Prevent logo from shrinking */
+}
+
+.logo {
+    height: 8rem;
+    /* 28 * 0.25rem = 7rem */
+    width: auto;
+}
+
+.brand-text {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    /* Always align left */
+}
+
+.brand-title {
+    font-size: 1.875rem;
+    /* text-3xl */
+    font-weight: 700;
+    color: #004aa7;
+    /* darkBlue */
+    letter-spacing: normal;
+    line-height: 1.2;
+    margin: 0;
+}
+
+.brand-subtitle {
+    font-size: 1.25rem;
+    /* text-xl */
+    color: #004aa7;
+    /* darkBlue */
+    font-style: italic;
+    margin: 0;
+}
+
+/* Right side - User Menu */
+.user-menu-container {
+    margin-right: 1rem;
+    /* Add some space from the right edge */
+    flex-shrink: 0;
+}
+
+/* Very small screens - hide brand text, keep only logo */
+@media (max-width: 480px) {
+    .header-container {
+        padding: 0 0.7rem;
+    }
+
+    .header-content {
+        gap: 0.5rem;
+        justify-content: space-between;
+    }
+
+    .brand-section {
+        flex: none;
+        /* Don't take up extra space */
+    }
+
+    .logo {
+        height: 7rem;
+        /* Even smaller logo */
+    }
+
+    .logo-container {
+        margin-right: 0;
+    }
+
+    .brand-text {
+        display: none;
+        /* Hide brand text completely */
+    }
+
+    .user-menu-container {
+        margin-right: 0.5rem;
+    }
+}
+
+/* Mobile styles (small screens) */
+@media (min-width: 481px) and (max-width: 640px) {
+    .header-container {
+        padding: 0 0.5rem;
+    }
+
+    .header-content {
+        gap: 0.5rem;
+    }
+
+    .logo {
+        height: 4rem;
+        /* Smaller logo on mobile */
+    }
+
+    .logo-container {
+        margin-right: 0.5rem;
+    }
+
+    .brand-title {
+        font-size: 1.25rem;
+        /* Smaller text on mobile */
+    }
+
+    .brand-subtitle {
+        font-size: 0.875rem;
+        /* Smaller subtitle on mobile */
+    }
+
+    .user-menu-container {
+        margin-right: 0.5rem;
+    }
+}
+
+/* Tablet styles (medium screens) */
+@media (min-width: 641px) and (max-width: 1023px) {
+    .logo {
+        height: 5.5rem;
+    }
+
+    .brand-title {
+        font-size: 1.5rem;
+    }
+
+    .brand-subtitle {
+        font-size: 1rem;
+    }
+
+    .user-menu-container {
+        margin-right: 0.75rem;
+    }
+}
+
+/* Desktop styles (large screens) */
+@media (min-width: 1024px) {
+    .header-container {
+        padding: 0 2rem;
+    }
+
+    .logo {
+        height: 7rem;
+    }
+
+    .brand-title {
+        font-size: 1.875rem;
+    }
+
+    .brand-subtitle {
+        font-size: 1.25rem;
+    }
+
+    .user-menu-container {
+        margin-right: 1rem;
+    }
+}
+
+/* Extra large desktop styles */
+@media (min-width: 1440px) {
+    .header-container {
+        padding: 0 3rem;
+    }
+
+    .logo {
+        height: 8rem;
+    }
+
+    .brand-title {
+        font-size: 2.25rem;
+        /* text-4xl */
+    }
+
+    .brand-subtitle {
+        font-size: 1.5rem;
+        /* text-2xl */
+    }
+
+    .user-menu-container {
+        margin-right: 1.5rem;
+    }
+}
+
+/* Ensure text doesn't wrap awkwardly */
+.brand-title {
+    white-space: nowrap;
+}
+
+.user-menu {
+    position: relative;
+    margin-left: auto;
+    /* Push the entire menu to the right */
+    width: fit-content;
+}
+
+/* User icon - responsive sizing */
+.user-icon {
+    width: 60px;
+    height: 50px;
+    background: #004aa7;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+}
+
+.user-icon:hover {
+    background: #004aa7;
+    transform: scale(1.05);
+}
+
+/* Inner icon - scales with circle size */
+.user-icon svg {
+    width: 50%;
+    /* Icon will be 50% of circle size */
+    height: 50%;
+    font-size: 50%;
+    /* For icon fonts */
+    transition: all 0.3s ease;
+}
+
+/* Alternative sizing for better visibility */
+.user-icon .user-avatar {
+    width: 60%;
+    height: 60%;
+    font-size: 60%;
+}
+
+/* Dropdown base styles */
+.dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    /* Keeps dropdown aligned to right edge of icon */
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+    min-width: 180px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    margin-top: 8px;
+    z-index: 1000;
+}
+
+.dropdown.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* Dropdown items */
+.dropdown-item {
+    padding: 10px 16px;
+    cursor: pointer;
+    transition: 0.2s ease;
+    border-bottom: 1px solid #f0f0f0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+}
+
+.dropdown-item:last-child {
+    border-bottom: none;
+}
+
+.dropdown-item:hover {
+    background: #f8fafc;
+}
+
+/* Mobile styles (small screens) */
+@media (max-width: 640px) {
+    .user-icon {
+        width: 60px;
+        height: 60px;
+    }
+
+    .user-icon svg,
+    .user-icon i,
+    .user-icon .icon {
+        width: 50%;
+        height: 50%;
+        font-size: 20px;
+        /* Specific size for mobile */
+    }
+
+    .user-icon .user-avatar {
+        width: 60%;
+        height: 60%;
+        font-size: 24px;
+    }
+
+    .dropdown {
+        min-width: 160px;
+        right: 0;
+        /* Keep aligned to right */
+        margin-top: 6px;
+    }
+
+    .dropdown-item {
+        padding: 8px 12px;
+        font-size: 13px;
+        gap: 6px;
+    }
+}
+
+/* Tablet styles (medium screens) */
+@media (min-width: 641px) and (max-width: 1023px) {
+    .user-icon {
+        width: 60px;
+        height: 60px;
+    }
+
+    .user-icon svg {
+        width: 50%;
+        height: 50%;
+        font-size: 30px;
+    }
+
+    .user-icon .user-avatar {
+        width: 60%;
+        height: 60%;
+        font-size: 36px;
+    }
+
+    .dropdown {
+        min-width: 190px;
+        margin-top: 8px;
+    }
+
+    .dropdown-item {
+        padding: 11px 18px;
+        font-size: 14px;
+        gap: 9px;
+    }
+}
+
+/* Desktop styles (large screens) */
+@media (min-width: 1024px) {
+    .user-icon {
+        width: 70px;
+        height: 70px;
+    }
+
+    .user-icon svg {
+        width: 50%;
+        height: 50%;
+        font-size: 35px;
+    }
+
+    .dropdown {
+        min-width: 220px;
+        margin-top: 10px;
+    }
+
+    .dropdown-item {
+        padding: 14px 22px;
+        font-size: 15px;
+        gap: 12px;
+    }
+}
+
+/* Extra large desktop styles */
+@media (min-width: 1440px) {
+    .user-icon {
+        width: 80px;
+        height: 80px;
+    }
+
+    .user-icon svg {
+        width: 50%;
+        height: 50%;
+        font-size: 40px;
+    }
+
+    .dropdown {
+        min-width: 240px;
+        margin-top: 12px;
+    }
+
+    .dropdown-item {
+        padding: 16px 24px;
+        font-size: 16px;
+        gap: 14px;
+    }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+    .user-icon:hover {
+        transform: none;
+        /* Remove hover scale on touch devices */
+    }
+
+    .dropdown-item {
+        padding: 14px 18px;
+        /* Larger touch targets */
+        min-height: 44px;
+        /* Ensure minimum touch target size */
+    }
+}
+
+/* High DPI screens */
+@media (-webkit-min-device-pixel-ratio: 2),
+(min-resolution: 192dpi) {
+    .dropdown {
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        /* Slightly stronger shadow */
+    }
+}
