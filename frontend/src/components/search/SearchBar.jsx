@@ -21,7 +21,9 @@ export const SearchBar = ({
   isLoading,
   showFilters,
   onToggleFilters,
+  onClear, // add onClear prop
 }) => {
+  
   const handleSubmit = (e) => {
     e.preventDefault();
     onSearchSubmit();
@@ -29,6 +31,7 @@ export const SearchBar = ({
 
   const handleClear = () => {
     onSearchChange('');
+    if (onClear) onClear(); // call onClear if provided
   };
 
   return (

@@ -85,7 +85,7 @@
 
 .search-bar-clear-button {
     padding: 0.5rem;
-    /* p-2 */
+    /* p-3 for bigger button */
     color: #9ca3af;
     /* text-gray-400 */
     background: none;
@@ -98,6 +98,11 @@
 .search-bar-clear-button:hover {
     color: #4b5563;
     /* hover:text-gray-600 */
+}
+
+.search-bar-clear-button svg {
+    width: 1.5rem;
+    height: 1.5rem;
 }
 
 .search-bar-filter-button {

@@ -9,8 +9,10 @@ const ManageDataPage = () => {
     const [searchQuery, setSearchQuery] = useState('');
     const [showFilters, setShowFilters] = useState(false);
     const [filters, setFilters] = useState({ type: 'all' });
+    const [searchResults, setSearchResults] = useState([]);
+    const [setHasSearched] = useState(false);
 
-    const { results, loading, error, hasSearched, searchApi } = useSearch();
+    const { results, loading, error, hasSearched, searchApi, clearResults } = useSearch();
 
     const handleSearchSubmit = () => {
         if (searchQuery.trim()) {
@@ -20,6 +22,14 @@ const ManageDataPage = () => {
 
     const handleToggleFilters = () => {
         setShowFilters(!showFilters);
+    };
+
+    const handleClearSearch = () => {
+        clearResults(); // Clear the search results from the API hook
+        setSearchQuery('');
+        setSearchResults([]);
+        setHasSearched(false); // if you use this flag
+
     };
 
     return (
@@ -49,6 +59,7 @@ const ManageDataPage = () => {
                         isLoading={loading}
                         showFilters={showFilters}
                         onToggleFilters={handleToggleFilters}
+                        onClear={handleClearSearch}
                     />
 
                     <SearchFilters
