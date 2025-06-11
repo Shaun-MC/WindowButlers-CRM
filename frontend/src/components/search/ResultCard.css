@@ -1,154 +1,113 @@
 .result-card {
     background: white;
     border-radius: 0.75rem;
-    /* rounded-xl */
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-    /* shadow-lg */
     overflow: hidden;
     border: 1px solid #f3f4f6;
-    /* border-gray-100 */
     position: relative;
     transition: box-shadow 0.3s ease;
-    /* transition-shadow duration-300 */
 }
 
 .result-card:hover {
     box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-    /* hover:shadow-xl */
 }
 
 /* Edit Button */
 .result-card-edit-container {
     position: absolute;
     top: 1rem;
-    /* top-4 */
     right: 1rem;
-    /* right-4 */
-    opacity: 0;
-    transition: opacity 0.2s ease;
-    /* transition-opacity duration-200 */
-}
-
-.result-card:hover .result-card-edit-container {
     opacity: 1;
-    /* group-hover:opacity-100 */
+    transition: opacity 0.2s ease;
 }
 
 .result-card-edit-button {
     padding: 0.5rem;
-    /* p-2 */
     background: white;
     border-radius: 50%;
-    /* rounded-full */
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    /* shadow-md */
     border: 1px solid #e5e7eb;
-    /* border-gray-200 */
     cursor: pointer;
     transition: box-shadow 0.2s ease;
-    /* transition-shadow duration-200 */
 }
 
 .result-card-edit-button:hover {
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-    /* hover:shadow-lg */
 }
 
 .result-card-edit-icon {
     height: 1rem;
-    /* h-4 */
     width: 1rem;
-    /* w-4 */
     color: #4b5563;
-    /* text-gray-600 */
     transition: color 0.2s ease;
-    /* transition-colors */
 }
 
 .result-card-edit-button:hover .result-card-edit-icon {
     color: #2563eb;
-    /* hover:text-blue-600 */
 }
 
 /* Card Content */
 .result-card-content {
-    padding: 1.5rem;
-    /* p-6 */
+    padding-top: 0.5rem;
+    padding-right: 1.5rem;
+    padding-bottom: 1.5rem;
+    padding-left: 1.5rem;
+    /* Reduce top padding further to align header with edit icon */
 }
 
 .result-card-header {
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
-    margin-bottom: 1rem;
-    /* mb-4 */
+    margin-bottom: 0rem;
     padding-right: 3rem;
-    /* pr-12 */
 }
 
 .result-card-header-info {
     display: flex;
     align-items: center;
     gap: 0.75rem;
-    /* space-x-3 */
 }
 
 .result-card-type-icon {
     height: 1.25rem;
-    /* h-5 */
     width: 1.25rem;
-    /* w-5 */
 }
 
 .result-card-type-icon--person {
     color: #004aa7;
-    /* text-blue-600 */
 }
 
 .result-card-type-icon--home {
     color: #059669;
-    /* text-green-600 */
 }
 
 .result-card-name {
     font-size: 1.25rem;
-    /* text-xl */
     font-weight: 600;
-    /* font-semibold */
     color: #111827;
-    /* text-gray-900 */
 }
 
 .result-card-type-badge {
     display: inline-flex;
     align-items: center;
     padding: 0.125rem 0.625rem;
-    /* px-2.5 py-0.5 */
     border-radius: 9999px;
-    /* rounded-full */
     font-size: 0.75rem;
-    /* text-xs */
     font-weight: 500;
-    /* font-medium */
     border: 1px solid;
 }
 
 .result-card-type-badge--person {
     background-color: #dbeafe;
-    /* bg-blue-50 */
     color: #1d4ed8;
-    /* text-blue-700 */
     border-color: #bfdbfe;
-    /* border-blue-200 */
 }
 
 .result-card-type-badge--home {
     background-color: #d1fae5;
-    /* bg-green-50 */
     color: #047857;
-    /* text-green-700 */
     border-color: #a7f3d0;
-    /* border-green-200 */
 }
 
 /* Card Details */
@@ -156,24 +115,20 @@
     display: flex;
     flex-direction: column;
     gap: 0.75rem;
-    /* space-y-3 */
 }
 
 .result-card-detail-row {
     display: flex;
-    align-items: flex-start; /* Top align icon and text */
+    align-items: flex-start;
     gap: 0.75rem;
     flex-wrap: nowrap;
 }
 
 .result-card-detail-icon {
     height: 1.25rem;
-    /* h-5 */
     width: 1.25rem;
-    /* w-5 */
     color: #9ca3af;
-    /* text-gray-400 */
-    margin-top: 0.125rem; /* Restore slight top margin for icon if needed */
+    margin-top: 0.125rem;
     flex-shrink: 0;
 }
 
@@ -183,95 +138,191 @@
     display: block;
     align-items: flex-start;
     color: #000000;
-    /* text-gray-600 */
     word-break: break-word;
 }
 
 .result-card-contact-link {
     color: #2563eb;
-    /* text-blue-600 */
     text-decoration: none;
     transition: color 0.2s ease;
-    /* transition-colors */
 }
 
 .result-card-contact-link:hover {
     color: #1d4ed8;
-    /* hover:text-blue-800 */
 }
 
-/* Jobs Section */
-.result-card-jobs {
+/* UPDATED: Jobs Button as Icon Row */
+.result-card-jobs-row {
     display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    /* space-y-2 */
-}
-
-.result-card-jobs-container {
-    margin-left: .025rem;
-    /* ml-8 */
+    align-items: center;
+    gap: 0.75rem;
+    /* Same gap as other detail rows */
 }
 
 .result-card-jobs-button {
-    display: flex;
+    display: inline-flex;
     align-items: center;
-    gap: 0.25rem;
-    /* space-x-2 */
-    font-size: 1.25rem;
-    /* text-sm */
-    color: #4b5563;
-    /* text-gray-600 */
-    background: none;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    /* Comfortable padding */
+    background-color: #2563eb;
+    /* bg-blue-600 */
+    color: white;
     border: none;
+    border-radius: 0.375rem;
+    /* rounded-md */
+    font-size: 0.875rem;
+    /* text-sm */
+    font-weight: 1000;
+    /* font-medium */
     cursor: pointer;
-    transition: color 0.2s ease;
-    /* transition-colors */
+    transition: all 0.2s ease;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    /* shadow-sm */
+    flex: unset; /* Do not stretch to fill row */
+    width: auto; /* Only as wide as content */
+    min-width: 0;
 }
 
 .result-card-jobs-button:hover {
-    color: #111827;
-    /* hover:text-gray-800 */
+    background-color: #1d4ed8;
+    /* hover:bg-blue-700 */
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    transform: translateY(-1px);
 }
 
-.result-card-jobs-text {
-    font-weight: 500;
-    /* font-medium */
+.result-card-jobs-button:active {
+    background-color: #1e40af;
+    /* active:bg-blue-800 */
+    transform: translateY(0);
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
 }
 
-.result-card-jobs-chevron {
+.result-card-jobs-button:focus {
+    outline: 2px solid #3b82f6;
+    outline-offset: 2px;
+}
+
+/* Briefcase icon styling */
+.result-card-jobs-icon {
     height: 1rem;
-    /* h-4 */
+    /* h-4 - slightly smaller than detail icons */
     width: 1rem;
     /* w-4 */
-    transition: transform 0.2s ease;
-    /* transition-transform duration-200 */
+    flex-shrink: 0;
 }
 
-.result-card-jobs-chevron--open {
-    transform: rotate(180deg);
-    /* rotate-180 */
+/* Jobs button text */
+.result-card-jobs-text {
+    font-weight: 500;
 }
 
-.result-card-jobs-content {
-    margin-top: 0.5rem;
-    /* mt-2 */
-    padding: 0.75rem;
-    /* p-3 */
-    background-color: #f9fafb;
-    /* bg-gray-50 */
-    border-radius: 0.5rem;
-    /* rounded-lg */
-    border: 1px solid #e5e7eb;
-    /* border-gray-200 */
+/* Jobs Popup/Modal - unchanged */
+.result-card-jobs-popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
 }
 
-.result-card-jobs-empty {
-    font-size: 0.875rem;
-    /* text-sm */
+.result-card-jobs-popup-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.result-card-jobs-popup {
+    background: white;
+    border-radius: 0.75rem;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    max-width: 32rem;
+    width: 100%;
+    max-height: 80vh;
+    overflow-y: auto;
+    position: relative;
+    transform: scale(0.95) translateY(10px);
+    transition: all 0.3s ease;
+}
+
+.result-card-jobs-popup-overlay.active .result-card-jobs-popup {
+    transform: scale(1) translateY(0);
+}
+
+.result-card-jobs-popup-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.5rem 1rem 1.5rem;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.result-card-jobs-popup-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #111827;
+    margin: 0;
+}
+
+.result-card-jobs-popup-close {
+    padding: 0.5rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    border-radius: 0.375rem;
     color: #6b7280;
-    /* text-gray-500 */
-    font-style: italic;
+    transition: all 0.2s ease;
+}
+
+.result-card-jobs-popup-close:hover {
+    background-color: #f3f4f6;
+    color: #374151;
+}
+
+.result-card-jobs-popup-close-icon {
+    width: 1.25rem;
+    height: 1.25rem;
+}
+
+.result-card-jobs-popup-content {
+    padding: 1.5rem;
+    min-height: 12rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.result-card-jobs-popup-empty {
+    text-align: center;
+    color: #6b7280;
+}
+
+.result-card-jobs-popup-empty-icon {
+    width: 3rem;
+    height: 3rem;
+    color: #d1d5db;
+    margin: 0 auto 1rem;
+}
+
+.result-card-jobs-popup-empty-title {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #374151;
+    margin-bottom: 0.5rem;
+}
+
+.result-card-jobs-popup-empty-text {
+    font-size: 0.875rem;
+    color: #6b7280;
 }
 
 /* Footer */
@@ -279,25 +330,38 @@
     display: flex;
     align-items: center;
     gap: 0.75rem;
-    /* space-x-3 */
     padding-top: 0.5rem;
-    /* pt-2 */
     border-top: 1px solid #f3f4f6;
-    /* border-gray-100 */
 }
 
 .result-card-footer-icon {
     height: 1rem;
-    /* h-4 */
     width: 1rem;
-    /* w-4 */
     color: #9ca3af;
-    /* text-gray-400 */
 }
 
 .result-card-footer-text {
     font-size: 0.875rem;
-    /* text-sm */
     color: #6b7280;
-    /* text-gray-500 */
+}
+
+/* Mobile Optimizations */
+@media (max-width: 640px) {
+    .result-card-jobs-popup {
+        margin: 1rem;
+        max-height: 85vh;
+    }
+
+    .result-card-jobs-popup-header {
+        padding: 1rem;
+    }
+
+    .result-card-jobs-popup-content {
+        padding: 1rem;
+    }
+
+    .result-card-jobs-button {
+        padding: 0.625rem 1rem;
+        font-size: 1rem;
+    }
 }
