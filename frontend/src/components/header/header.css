@@ -170,7 +170,7 @@
     }
 
     .logo {
-        height: 7rem;
+        height: 5rem;
     }
 
     .brand-title {
@@ -189,20 +189,20 @@
 /* Extra large desktop styles */
 @media (min-width: 1440px) {
     .header-container {
-        padding: 0 3rem;
+        padding: 0 1rem;
     }
 
     .logo {
-        height: 8rem;
+        height: 5rem;
     }
 
     .brand-title {
-        font-size: 2.25rem;
+        font-size: 1.2rem;
         /* text-4xl */
     }
 
     .brand-subtitle {
-        font-size: 1.5rem;
+        font-size: 1rem;
         /* text-2xl */
     }
 
@@ -310,9 +310,7 @@
         height: 60px;
     }
 
-    .user-icon svg,
-    .user-icon i,
-    .user-icon .icon {
+    .user-icon svg {
         width: 50%;
         height: 50%;
         font-size: 20px;
@@ -398,13 +396,13 @@
 /* Extra large desktop styles */
 @media (min-width: 1440px) {
     .user-icon {
-        width: 80px;
-        height: 80px;
+        width: 70px;
+        height: 70px;
     }
 
     .user-icon svg {
-        width: 50%;
-        height: 50%;
+        width: 70%;
+        height: 70%;
         font-size: 40px;
     }
 

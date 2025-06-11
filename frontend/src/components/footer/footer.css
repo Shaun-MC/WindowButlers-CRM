@@ -1,19 +1,10 @@
-/* Footer Styles - Sticky to bottom */
+/* Footer Styles - Non-Sticky Version */
 .footer {
     width: 100%;
-    position: fixed;
-    bottom: 0;
-    left: 0;
     padding: 20px 0;
     background-color: #e0e4f4;
-    border-top: 1px solid white;
-    z-index: 1000;
-}
-
-/* Add padding to body to prevent content overlap */
-body {
-    padding-bottom: 80px;
-    /* Adjust based on footer height */
+    border-top: 1px solid #004aa7;;
+    margin-top: auto; 
 }
 
 .footer-content {
@@ -22,7 +13,7 @@ body {
 }
 
 .footer-text {
-    color: #6c757d;
+    color: #004aa7;;
     font-size: 14px;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     margin: 0;
