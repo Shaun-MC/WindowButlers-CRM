@@ -1,4 +1,4 @@
-// frontend/src/components/features/manage-data/components/ResultCard.jsx
+// frontend/src/components/search/ResultCard.jsx
 import React, { useState } from 'react';
 import { ReactComponent as PinIcon } from '../../icons/map-pin.svg';
 import { ReactComponent as MailIcon } from '../../icons/email.svg';
@@ -29,14 +29,8 @@ export const ResultCard = ({ result }) => {
     return result.type === 'person' ? (
       <UserIcon className="result-card-type-icon result-card-type-icon--person" />
     ) : (
-      <HomeIcon className="result-card-type-icon result-card-type-icon--business" />
+      <HomeIcon className="result-card-type-icon result-card-type-icon--home" />
     );
-  };
-
-  const getTypeBadgeClass = () => {
-    return result.type === 'person'
-      ? 'result-card-type-badge result-card-type-badge--person'
-      : 'result-card-type-badge result-card-type-badge--business';
   };
 
   const handleEditClick = () => {
@@ -46,6 +40,11 @@ export const ResultCard = ({ result }) => {
 
   const handleJobsToggle = () => {
     setIsJobsOpen(!isJobsOpen);
+  };
+
+  // Format the complete address as a single line
+  const formatAddress = (address) => {
+    return `${address.street}, ${address.city}, ${address.state} ${address.zipCode}, ${address.country}`;
   };
 
   return (
@@ -69,9 +68,6 @@ export const ResultCard = ({ result }) => {
               <h3 className="result-card-name">
                 {result.name}
               </h3>
-              <span className={getTypeBadgeClass()}>
-                {result.type === 'person' ? 'Person' : 'Business'}
-              </span>
             </div>
           </div>
         </div>
@@ -80,11 +76,7 @@ export const ResultCard = ({ result }) => {
           <div className="result-card-detail-row">
             <PinIcon className="result-card-detail-icon" />
             <div className="result-card-address">
-              <p className="result-card-address-street">{result.address.street}</p>
-              <p>
-                {result.address.city}, {result.address.state} {result.address.zipCode}
-              </p>
-              <p>{result.address.country}</p>
+              {formatAddress(result.address)}
             </div>
           </div>
 

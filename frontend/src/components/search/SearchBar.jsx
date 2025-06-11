@@ -1,4 +1,4 @@
-// frontend/src/components/features/manage-data/components/SearchBar.jsx
+// frontend/src/components/search/SearchBar.jsx
 import React from 'react';
 import { ReactComponent as SearchIcon } from '../../icons/magnifying-glass.svg';
 import { ReactComponent as FilterIcon } from '../../icons/filter.svg';
@@ -13,6 +13,7 @@ import './SearchBar.css';
  * @param {boolean} props.isLoading
  * @param {boolean} props.showFilters
  * @param {function} props.onToggleFilters
+ * @param {function} props.onClear
  */
 export const SearchBar = ({
   searchQuery,
@@ -21,17 +22,24 @@ export const SearchBar = ({
   isLoading,
   showFilters,
   onToggleFilters,
-  onClear, // add onClear prop
+  onClear,
 }) => {
-  
+
   const handleSubmit = (e) => {
     e.preventDefault();
     onSearchSubmit();
   };
 
   const handleClear = () => {
-    onSearchChange('');
-    if (onClear) onClear(); // call onClear if provided
+    // Call the onClear callback which will handle clearing both input and results
+    if (onClear) {
+      onClear();
+    }
+  };
+
+  const handleInputChange = (e) => {
+    const newValue = e.target.value;
+    onSearchChange(newValue);
   };
 
   return (
@@ -45,8 +53,8 @@ export const SearchBar = ({
           <input
             type="text"
             value={searchQuery}
-            onChange={(e) => onSearchChange(e.target.value)}
-            placeholder="Search for names, addresses, or businesses..."
+            onChange={handleInputChange}
+            placeholder="Input names or addresses"
             className="search-bar-input"
             disabled={isLoading}
           />
@@ -58,8 +66,9 @@ export const SearchBar = ({
                 onClick={handleClear}
                 className="search-bar-clear-button"
                 aria-label="Clear search"
+                title="Clear search"
               >
-                <ClearIcon className="search-bar-icon" />
+                <ClearIcon />
               </button>
             )}
 
@@ -67,10 +76,11 @@ export const SearchBar = ({
               type="button"
               onClick={onToggleFilters}
               className={`search-bar-filter-button ${showFilters
-                  ? 'search-bar-filter-button--active'
-                  : 'search-bar-filter-button--inactive'
+                ? 'search-bar-filter-button--active'
+                : 'search-bar-filter-button--inactive'
                 }`}
               aria-label="Toggle filters"
+              title="Toggle filters"
             >
               <FilterIcon className="search-bar-icon" />
             </button>
@@ -79,6 +89,7 @@ export const SearchBar = ({
               type="submit"
               disabled={isLoading || !searchQuery.trim()}
               className="search-bar-submit-button"
+              title="Search"
             >
               {isLoading ? 'Searching...' : 'Search'}
             </button>

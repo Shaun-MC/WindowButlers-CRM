@@ -101,11 +101,11 @@
 }
 
 .result-card-type-icon--person {
-    color: #2563eb;
+    color: #004aa7;
     /* text-blue-600 */
 }
 
-.result-card-type-icon--business {
+.result-card-type-icon--home {
     color: #059669;
     /* text-green-600 */
 }
@@ -142,7 +142,7 @@
     /* border-blue-200 */
 }
 
-.result-card-type-badge--business {
+.result-card-type-badge--home {
     background-color: #d1fae5;
     /* bg-green-50 */
     color: #047857;
@@ -161,9 +161,9 @@
 
 .result-card-detail-row {
     display: flex;
-    align-items: flex-start;
+    align-items: flex-start; /* Top align icon and text */
     gap: 0.75rem;
-    /* space-x-3 */
+    flex-wrap: nowrap;
 }
 
 .result-card-detail-icon {
@@ -173,19 +173,18 @@
     /* w-5 */
     color: #9ca3af;
     /* text-gray-400 */
-    margin-top: 0.125rem;
-    /* mt-0.5 */
+    margin-top: 0.125rem; /* Restore slight top margin for icon if needed */
     flex-shrink: 0;
 }
 
 .result-card-address {
-    color: #4b5563;
+    flex: 1 1 0%;
+    min-width: 0;
+    display: block;
+    align-items: flex-start;
+    color: #000000;
     /* text-gray-600 */
-}
-
-.result-card-address-street {
-    font-weight: 500;
-    /* font-medium */
+    word-break: break-word;
 }
 
 .result-card-contact-link {
@@ -205,21 +204,21 @@
 .result-card-jobs {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 1rem;
     /* space-y-2 */
 }
 
 .result-card-jobs-container {
-    margin-left: 2rem;
+    margin-left: .025rem;
     /* ml-8 */
 }
 
 .result-card-jobs-button {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.25rem;
     /* space-x-2 */
-    font-size: 0.875rem;
+    font-size: 1.25rem;
     /* text-sm */
     color: #4b5563;
     /* text-gray-600 */

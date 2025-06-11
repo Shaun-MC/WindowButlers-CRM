@@ -1,4 +1,4 @@
-// frontend/src/components/features/manage-data/components/SearchResults.jsx
+// frontend/src/components/search/SearchResults.jsx
 import React from 'react';
 import ResultCard from './ResultCard';
 import { ReactComponent as SearchIcon } from '../../icons/magnifying-glass.svg';
@@ -50,12 +50,14 @@ export const SearchResults = ({
       <div className="search-results-container">
         <div className="search-results-empty">
           <SearchIcon className="search-results-empty-icon" />
-          <h3 className="search-results-empty-title">
-            No results found
-          </h3>
-          <p className="search-results-empty-subtitle">
-            Try adjusting your search terms or filters
-          </p>
+          <div className="search-results-empty-content">
+            <h3 className="search-results-empty-title">
+              No results found
+            </h3>
+            <p className="search-results-empty-subtitle">
+              Try adjusting your search terms or filters
+            </p>
+          </div>
         </div>
       </div>
     );

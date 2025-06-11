@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+// frontend/src/components/pages/ManageDataPage.jsx
+import React, { useState, useEffect, useRef } from 'react';
 import { SearchBar } from '../search/SearchBar';
 import { SearchFilters } from '../search/SearchFilters';
 import { SearchResults } from '../search/SearchResults';
@@ -9,12 +10,40 @@ const ManageDataPage = () => {
     const [searchQuery, setSearchQuery] = useState('');
     const [showFilters, setShowFilters] = useState(false);
     const [filters, setFilters] = useState({ type: 'all' });
-    const [searchResults, setSearchResults] = useState([]);
-    const [setHasSearched] = useState(false);
 
-    const { results, loading, error, hasSearched, searchApi, clearResults } = useSearch();
+    // Ref to track the debounce timer
+    const debounceTimerRef = useRef(null);
+
+    // Use the hook's state instead of duplicating it
+    const { results, loading, error, hasSearched, searchApi, resetSearch } = useSearch();
+
+    // Auto-search when query changes (debounced)
+    useEffect(() => {
+        // Clear any existing timer
+        if (debounceTimerRef.current) {
+            clearTimeout(debounceTimerRef.current);
+        }
+
+        // Only set up debounced search if there's a query
+        if (searchQuery.trim().length >= 2) {
+            debounceTimerRef.current = setTimeout(() => {
+                searchApi(searchQuery, filters);
+            }, 500);
+        }
+
+        return () => {
+            if (debounceTimerRef.current) {
+                clearTimeout(debounceTimerRef.current);
+            }
+        };
+    }, [searchQuery, filters, searchApi]);
 
     const handleSearchSubmit = () => {
+        // Clear any pending debounced search
+        if (debounceTimerRef.current) {
+            clearTimeout(debounceTimerRef.current);
+        }
+
         if (searchQuery.trim()) {
             searchApi(searchQuery, filters);
         }
@@ -25,16 +54,35 @@ const ManageDataPage = () => {
     };
 
     const handleClearSearch = () => {
-        clearResults(); // Clear the search results from the API hook
-        setSearchQuery('');
-        setSearchResults([]);
-        setHasSearched(false); // if you use this flag
+        // Clear any pending debounced search immediately
+        if (debounceTimerRef.current) {
+            clearTimeout(debounceTimerRef.current);
+        }
 
+        // Reset search state IMMEDIATELY (synchronous)
+        resetSearch();
+
+        // Then update the input and filters
+        setSearchQuery('');
+        setShowFilters(false);
+    };
+
+    // Handle search query changes
+    const handleSearchChange = (newQuery) => {
+        setSearchQuery(newQuery);
+
+        // If the query is manually cleared (backspace/delete), immediately reset
+        if (newQuery.trim() === '') {
+            // Clear any pending search
+            if (debounceTimerRef.current) {
+                clearTimeout(debounceTimerRef.current);
+            }
+            resetSearch();
+        }
     };
 
     return (
         <div className="manage-data-page">
-            <div className="manage-data-spacer"></div>
 
             {/* Subheader */}
             <div className="manage-data-subheader">
@@ -42,7 +90,7 @@ const ManageDataPage = () => {
                     <div className="manage-data-header">
                         <div className="manage-data-header-content">
                             <h1 className="manage-data-title">
-                                Add, View, and Edit Client and Business Data
+                                View and Edit Client & Business Records 
                             </h1>
                         </div>
                     </div>
@@ -54,7 +102,7 @@ const ManageDataPage = () => {
                 <div className="manage-data-content">
                     <SearchBar
                         searchQuery={searchQuery}
-                        onSearchChange={setSearchQuery}
+                        onSearchChange={handleSearchChange}
                         onSearchSubmit={handleSearchSubmit}
                         isLoading={loading}
                         showFilters={showFilters}
