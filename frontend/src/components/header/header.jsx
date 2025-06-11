@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useAuth } from '../../contexts/auth/index.jsx';
 import logo from "../../logo.avif";
 import DropdownMenu from './dropdownmenu.jsx';
-import SideMenu, { MenuIcon } from './sidemenu.jsx';
+import SideMenu from './sidemenu.jsx';
 import './header.css';
 
 const Header = () => {
@@ -50,7 +50,7 @@ const Header = () => {
                                     className="logo"
                                 />
                             </div>
-                            
+
                             {/* Brand Text */}
                             <div className="brand-text">
                                 <h1 className="brand-title">
@@ -70,24 +70,18 @@ const Header = () => {
                                         onClose={closeDropdown}
                                     />
                                 </div>
-                                
-                                {/* Side Menu Icon */}
-                                <MenuIcon
+
+                                {/* Side Menu (includes its own menu icon) */}
+                                <SideMenu
                                     isOpen={isSideMenuOpen}
-                                    onClick={toggleSideMenu}
+                                    onClose={closeSideMenu}
+                                    onToggle={toggleSideMenu}
                                 />
                             </div>
                         )}
                     </div>
                 </div>
             </header>
-
-            {/* Side Menu */}
-            <SideMenu
-                isOpen={isSideMenuOpen}
-                onClose={closeSideMenu}
-                onToggle={toggleSideMenu}
-            />
         </>
     );
 };

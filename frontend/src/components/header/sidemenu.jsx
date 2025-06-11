@@ -2,7 +2,6 @@
 import React, { useEffect } from 'react';
 import { ReactComponent as CloseIcon } from '../../icons/x.svg';
 import { ReactComponent as BurgerIcon } from '../../icons/burger.svg';
-import { ReactComponent as HomeIcon } from '../../icons/home.svg';
 import { ReactComponent as ManageDataIcon } from '../../icons/account-settings.svg';
 import { ReactComponent as ReferenceMaterialIcon } from '../../icons/reference-material.svg';
 import { ReactComponent as MetricsDashboardIcon } from '../../icons/metrics.svg';
@@ -10,6 +9,7 @@ import { ReactComponent as RouteJobsIcon } from '../../icons/route.svg';
 import { ReactComponent as ClientOutreachIcon } from '../../icons/outreach.svg';
 import { ReactComponent as AppointmentSchedulingIcon } from '../../icons/calender.svg';
 import { ReactComponent as PaymentProcessingIcon } from '../../icons/payment.svg';
+import { ReactComponent as ArrowIcon } from '../../icons/arrow-right.svg';
 import './sidemenu.css';
 
 const SideMenu = ({ isOpen, onClose, onToggle }) => {
@@ -17,7 +17,11 @@ const SideMenu = ({ isOpen, onClose, onToggle }) => {
     const menuItems = [
         {
             id: 'homepage',
-            icon: HomeIcon,
+            icon: () => (
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
+                </svg>
+            ),
             title: 'Homepage',
             route: '/'
         },
@@ -98,8 +102,6 @@ const SideMenu = ({ isOpen, onClose, onToggle }) => {
         }
     };
 
-    if (!isOpen) return null;
-
     return (
         <>
             {/* Menu Toggle Button */}
@@ -113,75 +115,49 @@ const SideMenu = ({ isOpen, onClose, onToggle }) => {
             </button>
 
             {/* Side Menu Overlay and Panel */}
-            <div className={`side-menu-overlay ${isOpen ? 'active' : ''}`} onClick={handleOverlayClick}>
-                <div className="side-menu">
-                    {/* Header */}
-                    <div className="side-menu-header">
-                        <h2 className="side-menu-title">Menu</h2>
-                        <button
-                            onClick={onClose}
-                            className="side-menu-close"
-                            aria-label="Close menu"
-                        >
-                            <CloseIcon className="side-menu-close-icon" />
-                        </button>
-                    </div>
+            {isOpen && (
+                <div className={`side-menu-overlay active`} onClick={handleOverlayClick}>
+                    <div className="side-menu">
+                        {/* Header */}
+                        <div className="side-menu-header">
+                            <h2 className="side-menu-title">Menu</h2>
+                            <button
+                                onClick={onClose}
+                                className="side-menu-close"
+                                aria-label="Close menu"
+                            >
+                                <CloseIcon className="side-menu-close-icon" />
+                            </button>
+                        </div>
 
-                    {/* Menu Items */}
-                    <div className="side-menu-content">
-                        <nav className="side-menu-nav">
-                            {menuItems.map((item) => (
-                                <button
-                                    key={item.id}
-                                    onClick={() => handleMenuItemClick(item.route)}
-                                    className="side-menu-item"
-                                    aria-label={`Navigate to ${item.title}`}
-                                >
-                                    <div className="side-menu-item-icon">
-                                        {typeof item.icon === 'function' ?
-                                            <item.icon className="side-menu-icon" /> :
+                        {/* Menu Items */}
+                        <div className="side-menu-content">
+                            <nav className="side-menu-nav">
+                                {menuItems.map((item) => (
+                                    <button
+                                        key={item.id}
+                                        onClick={() => handleMenuItemClick(item.route)}
+                                        className="side-menu-item"
+                                        aria-label={`Navigate to ${item.title}`}
+                                    >
+                                        <div className="side-menu-item-icon">
                                             <item.icon className="side-menu-icon" />
-                                        }
-                                    </div>
-                                    <div className="side-menu-item-content">
-                                        <h3 className="side-menu-item-title">{item.title}</h3>
-                                        <p className="side-menu-item-description">{item.description}</p>
-                                    </div>
-                                    <div className="side-menu-item-arrow">
-                                        <svg
-                                            width="20"
-                                            height="20"
-                                            viewBox="0 0 24 24"
-                                            fill="none"
-                                            stroke="currentColor"
-                                            strokeWidth="2"
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                        >
-                                            <path d="m9 18 6-6-6-6" />
-                                        </svg>
-                                    </div>
-                                </button>
-                            ))}
-                        </nav>
+                                        </div>
+                                        <div className="side-menu-item-content">
+                                            <h3 className="side-menu-item-title">{item.title}</h3>
+                                        </div>
+                                        <div className="side-menu-item-arrow">
+                                            <ArrowIcon width={20} height={20} className="side-menu-arrow-icon" />
+                                        </div>
+                                    </button>
+                                ))}
+                            </nav>
+                        </div>
                     </div>
                 </div>
-            </div>
+            )}
         </>
-
     );
 };
-
-// Export both the SideMenu component and a separate MenuIcon component for flexibility
-export const MenuIcon = ({ isOpen, onClick }) => (
-    <button
-        className="menu-icon"
-        onClick={onClick}
-        aria-label={isOpen ? "Close menu" : "Open menu"}
-        aria-expanded={isOpen}
-    >
-        <BurgerIcon className="menu-icon-svg" />
-    </button>
-);
 
 export default SideMenu;

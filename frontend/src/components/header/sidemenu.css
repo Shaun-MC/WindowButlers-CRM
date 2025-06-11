@@ -166,10 +166,6 @@
     line-height: 1.4;
 }
 
-.side-menu-item-description {
-    margin: 0;
-}
-
 .side-menu-item-arrow {
     color: #9ca3af;
     transition: all 0.2s ease;
