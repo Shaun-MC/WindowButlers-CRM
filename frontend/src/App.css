@@ -184,7 +184,7 @@ body {
 .button-icon {
   width: 48px;
   height: 48px;
-  fill: #4f46e5;
+  color: #004aa7;
   transition: all 0.3s ease;
 }
 
@@ -195,7 +195,7 @@ body {
 .button-text {
   font-size: 1.1rem;
   font-weight: 600;
-  color: #374151;
+  color: #000000;
 }
 
 /* Mobile Responsiveness */
