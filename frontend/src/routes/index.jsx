@@ -2,15 +2,15 @@ import { useRoutes } from "react-router-dom";
 
 import Login from "../components/login/loginpage.jsx";
 import HomePage from "../components/homepage/homepage";
-import ManageDataPage from "../components/features/manage-data/index2.jsx";
-import ReferenceMaterialPage from "../components/features/reference-material/index.js";
-import MetricsDashboardPage from "../components/features/metrics-dashboard/index.js";
-import RouteJobsPage from "../components/features/route-jobs/index.js";
-import ClientOutreachPage from "../components/features/client-outreach/index.js";
-import AppointmentSchedulingPage from "../components/features/appt-scheduling/index.js";
-import PaymentProcessingPage from "../components/features/payment-processing/index.js";
-import SettingsPage from "../components/settings/index.js";
-import AccountPage from "../components/account/index.js";
+import ManageDataPage from "../components/pages/ManageDataPage.jsx";
+import ReferenceMaterialPage from "../components/pages/ReferenceMaterialPage.jsx";
+import MetricsDashboardPage from "../components/pages/MetricsDashboardPage.jsx";
+import RouteJobsPage from "../components/pages/RouteJobsPage.jsx";
+import ClientOutreachPage from "../components/pages/RouteJobsPage.jsx";
+import AppointmentSchedulingPage from "../components/pages/AppointmentSchedulingPage.jsx";
+import PaymentProcessingPage from "../components/pages/PaymentProcessingPage.jsx";
+import SettingsPage from "../components/pages/SettingsPage.jsx";
+import AccountDetailsPage from "../components/pages/AccountDetailsPage.jsx";
 
 const AppRouter = () => {
     const routesArray = [
@@ -64,7 +64,7 @@ const AppRouter = () => {
         },
         {
             path: "/account",
-            element: <AccountPage />,
+            element: <AccountDetailsPage />,
         },
     ];
 
