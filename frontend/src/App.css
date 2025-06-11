@@ -1,3 +1,5 @@
+/* App.css - Updated for non-sticky footer */
+
 .App {
   text-align: center;
 }
@@ -45,11 +47,34 @@
   box-sizing: border-box;
 }
 
+/* UPDATED: Remove padding-bottom that was needed for sticky footer */
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
   background: white;
   min-height: 100vh;
   scroll-behavior: smooth;
+  /* REMOVED: padding-bottom: 80px; */
+}
+
+/* ADD: App container styling for proper footer positioning */
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ADD: Main app wrapper */
+.app-wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ADD: Main content area that grows to fill space */
+.main-content-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 /* Main Content Styles */
@@ -57,6 +82,8 @@ body {
   max-width: 1200px;
   margin: 0 auto;
   padding: 3rem 2rem;
+  flex: 1;
+  /* This helps push footer down */
 }
 
 .welcome-section {
