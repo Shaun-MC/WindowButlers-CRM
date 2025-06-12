@@ -2,6 +2,7 @@ import { useRoutes } from "react-router-dom";
 
 import Login from "../components/login/loginpage.jsx";
 import HomePage from "../components/homepage/homepage";
+import AddDataPage from "../components/pages/AddDataPage.jsx";
 import ManageDataPage from "../components/pages/ManageDataPage.jsx";
 import ReferenceMaterialPage from "../components/pages/ReferenceMaterialPage.jsx";
 import MetricsDashboardPage from "../components/pages/MetricsDashboardPage.jsx";
@@ -29,6 +30,10 @@ const AppRouter = () => {
         {
             path: "/home",
             element: <HomePage />,
+        },
+        {
+            path: "/add-data",
+            element: <AddDataPage />,
         },
         {
             path: "/manage-data",
