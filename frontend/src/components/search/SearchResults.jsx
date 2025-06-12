@@ -1,7 +1,6 @@
 // frontend/src/components/features/manage-data/components/SearchResults.jsx
 import React from 'react';
 import { ReactComponent as SearchIcon } from '../../icons/magnifying-glass.svg';
-import { ReactComponent as AlertIcon } from '../../icons/checkbox-alert.svg';
 import './SearchResults.css';
 
 /**
@@ -35,11 +34,9 @@ export const SearchResults = ({
       <div className="search-results-container">
         <div className="search-results-error">
           <div className="search-results-error-content">
-            <AlertIcon className="search-results-error-icon" />
-            <div>
-              <h3 className="search-results-error-title">Search Error</h3>
-              <p className="search-results-error-message">{error}</p>
-            </div>
+            <p className="search-results-error-message">
+              Search Error: {error}
+            </p>
           </div>
         </div>
       </div>
@@ -66,12 +63,12 @@ export const SearchResults = ({
     <div className="search-results-container">
       <div className="search-results-header">
         {hasSearched && (
-        <div className="search-results-header">
-          <p className="search-results-count">
-            Found {results.length} result{results.length !== 1 ? 's' : ''}
-          </p>
-        </div>
-      )}
+          <div className="search-results-header">
+            <p className="search-results-count">
+              Found {results.length} result{results.length !== 1 ? 's' : ''}
+            </p>
+          </div>
+        )}
       </div>
 
       <div className="search-results-grid">

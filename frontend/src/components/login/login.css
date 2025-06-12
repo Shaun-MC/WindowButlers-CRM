@@ -148,7 +148,10 @@
     /* px-4 py-2 */
     color: white;
     /* text-white */
-    font-weight: 1000;
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-weight: 700;
 
     font-size: 1rem;
     /* font-medium */
@@ -188,7 +191,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 0rem;
+    gap: .5rem;
     /* gap-x-3 */
     padding: 0.625rem;
     /* py-2.5 */
@@ -200,7 +203,9 @@
     /* text-sm */
     color: #000000;
     /* text-black */
-    font-weight: 1000;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-weight: 700;
     /* font-medium */
     background-color: transparent;
     cursor: pointer;
@@ -230,11 +235,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-.social-signin__text {
-    flex: .75;
-    text-align: center;
 }
 
 /* Icons */
