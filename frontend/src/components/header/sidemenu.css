@@ -196,15 +196,15 @@
 /* Mobile Responsive - Menu Icon */
 @media (max-width: 640px) {
     .menu-icon {
-        width: 50px;
-        height: 50px;
+        width: 60px;
+        height: 60px;
         margin-left: 0;
         /* Remove left margin */
     }
 
     .menu-icon-svg {
-        width: 20px;
-        height: 20px;
+        width: 30px;
+        height: 30px;
     }
 
     .side-menu {
@@ -260,7 +260,7 @@
 @media (min-width: 1024px) {
     .menu-icon {
         width: 60px;
-        height: 50px;
+        height: 60px;
         margin-left: 0;
         /* Remove left margin */
     }
