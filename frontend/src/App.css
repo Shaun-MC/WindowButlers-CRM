@@ -81,3 +81,14 @@ body {
   padding: 3rem 2rem;
   flex: 1;
 }
+
+.button-icon svg {
+  stroke-width: 2 !important;
+  fill: none !important;
+  stroke: currentColor !important;
+}
+
+.button-icon svg[data-filled="true"] {
+  fill: currentColor !important;
+  stroke: none !important;
+}

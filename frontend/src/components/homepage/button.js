@@ -1,7 +1,7 @@
 // Button.js - Separate Button class file
 import { ReactComponent as AddDataIcon } from '../../icons/circle-plus.svg';
 import { ReactComponent as ManageDataIcon } from '../../icons/account-settings.svg';
-import { ReactComponent as ReferenceMaterialIcon } from '../../icons/reference-material.svg';
+import { ReactComponent as ReferenceMaterialIcon } from '../../icons/gallery.svg';
 import { ReactComponent as MetricsDashboardIcon } from '../../icons/metrics.svg';
 import { ReactComponent as RouteJobsIcon } from '../../icons/route.svg';
 import { ReactComponent as ClientOutreachIcon } from '../../icons/outreach.svg';
@@ -37,7 +37,8 @@ class Button {
 
     renderIcon(props = {}) {
         const IconComponent = this.icon;
-        return IconComponent ? <IconComponent {...props} /> : null;
+        const className = props.className ? `button-icon ${props.className}` : 'button-icon';
+        return IconComponent ? <IconComponent {...props} className={className} /> : null;
     }
 
     // Static method to create all buttons

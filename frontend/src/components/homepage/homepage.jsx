@@ -47,7 +47,7 @@ const HomePage = () => {
                         onTouchEnd={(e) => handleButtonInteraction(button, e)}
                         style={{ touchAction: 'manipulation' }} // Prevents double-tap zoom
                     >
-                        {button.renderIcon({ className: "button-icon", width: 24, height: 24 })}
+                        {button.renderIcon()}
                         <span className="button-text">{button.text}</span>
                     </button>
                 ))}

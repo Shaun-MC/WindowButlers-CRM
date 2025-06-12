@@ -5,6 +5,9 @@
     background-color: #e0e4f4;
     border-top: 1px solid #004aa7;;
     margin-top: auto; 
+    max-height: 120px;
+    overflow-y: auto;
+    position: relative; 
 }
 
 .footer-content {

@@ -4,7 +4,7 @@ import { ReactComponent as CloseIcon } from '../../icons/x.svg';
 import { ReactComponent as BurgerIcon } from '../../icons/burger.svg';
 import { ReactComponent as AddDataIcon } from '../../icons/circle-plus.svg';
 import { ReactComponent as ManageDataIcon } from '../../icons/account-settings.svg';
-import { ReactComponent as ReferenceMaterialIcon } from '../../icons/reference-material.svg';
+import { ReactComponent as ReferenceMaterialIcon } from '../../icons/gallery.svg';
 import { ReactComponent as MetricsDashboardIcon } from '../../icons/metrics.svg';
 import { ReactComponent as RouteJobsIcon } from '../../icons/route.svg';
 import { ReactComponent as ClientOutreachIcon } from '../../icons/outreach.svg';
