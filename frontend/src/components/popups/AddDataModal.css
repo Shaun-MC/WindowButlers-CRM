@@ -6,20 +6,23 @@
     bottom: 0;
     background-color: rgba(0, 0, 0, 0.5);
     display: flex;
-    align-items: top;
+    align-items: center;
     justify-content: center;
     z-index: 1000;
     padding: 1rem;
+    backdrop-filter: blur(4px);
 }
 
 .modal-content {
     background: white;
     border-radius: 0.75rem;
     box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-    max-width: 1000px;
+    max-width: 600px;
+    /* Increased from 500px to accommodate form layout */
     width: 100%;
     max-height: 90vh;
     overflow: hidden;
+    animation: modalAppear 0.3s ease-out;
 }
 
 @keyframes modalAppear {
@@ -40,6 +43,7 @@
     justify-content: space-between;
     padding: 1.5rem;
     border-bottom: 1px solid #e2e8f0;
+    background: #f8fafc;
 }
 
 .modal-title {
@@ -53,35 +57,301 @@
     background: none;
     border: none;
     cursor: pointer;
-    padding: 0.25rem;
-    border-radius: 0.25rem;
+    padding: 0.5rem;
+    border-radius: 0.375rem;
     color: #718096;
     transition: all 0.2s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .close-button:hover {
-    background-color: #f7fafc;
+    background-color: #e2e8f0;
     color: #2d3748;
 }
 
+.close-button:focus {
+    outline: 2px solid #3182ce;
+    outline-offset: 2px;
+}
+
 .close-button svg {
-    width: 24px;
-    height: 24px;
+    width: 20px;
+    height: 20px;
 }
 
 .modal-body {
-    padding: 1.5rem;
+    padding: 0;
     overflow-y: auto;
-    max-height: calc(90vh - 120px);
+    max-height: calc(90vh - 140px);
+    /* Account for header and actions */
 }
 
-.modal-body p {
-    color: #4a5568;
+/* Form Styles */
+.form-section {
+    padding: 1.5rem;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.form-section:last-child {
+    border-bottom: none;
+}
+
+/* Dropdown Row */
+.dropdown-row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    /* Reduced from 2rem for closer spacing */
+}
+
+.dropdown-label {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #374151;
+    margin: 0;
+    flex-shrink: 0;
+}
+
+/* Select wrapper to position chevron */
+.select-wrapper {
+    position: relative;
+    display: inline-block;
+    width: 200px;
+}
+
+.form-select {
+    width: 100%;
+    /* Full width of wrapper */
+    padding: 0.75rem 2.5rem 0.75rem 1rem;
+    /* Added right padding for chevron */
+    border: 2px solid #e2e8f0;
+    border-radius: 0.5rem;
+    font-size: 16px;
+    /* Prevent zoom on iOS Safari */
+    background: white;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    cursor: pointer;
+    /* Additional properties to prevent zoom */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    -webkit-tap-highlight-color: transparent;
+    /* Fix iOS Safari blue text issue */
+    color: #374151 !important;
+    -webkit-text-fill-color: #374151 !important;
+}
+
+/* Custom chevron icon */
+.select-chevron {
+    position: absolute;
+    right: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: #6b7280;
+    transition: transform 0.2s ease;
+}
+
+.select-chevron svg {
+    width: 20px;
+    height: 20px;
+    stroke-width: 2;
+}
+
+/* Rotate chevron when select is focused */
+.form-select:focus+.select-chevron {
+    transform: translateY(-50%) rotate(180deg);
+}
+
+.form-select:focus {
+    outline: none;
+    border-color: #3182ce;
+    box-shadow: 0 0 0 3px rgba(49, 130, 206, 0.1);
+}
+
+/* Form Rows and Groups */
+.form-row {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.form-row:last-child {
+    margin-bottom: 0;
+}
+
+.form-group {
+    flex: 1;
+    min-width: 0;
+}
+
+.form-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #374151;
+    margin-bottom: 0.5rem;
+}
+
+.form-input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 2px solid #e2e8f0;
+    border-radius: 0.5rem;
+    font-size: 16px;
+    /* Prevent zoom on iOS Safari */
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    background: white;
+    /* Additional properties to prevent zoom */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: text;
+    user-select: text;
+    /* Fix iOS Safari blue text issue */
+    color: #374151 !important;
+    -webkit-text-fill-color: #374151 !important;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: #3182ce;
+    box-shadow: 0 0 0 3px rgba(49, 130, 206, 0.1);
+}
+
+.form-input::placeholder {
+    color: #9ca3af;
+}
+
+/* Required Indicator Icon */
+.required-indicator {
+    color: #f59e0b;
+    cursor: help;
+    display: flex;
+    align-items: center;
+}
+
+.required-indicator svg {
+    width: 14px;
+    height: 14px;
+}
+
+/* Caption - Inline version without border */
+.form-caption-inline {
+    margin-top: 0.5rem;
+    /* Reduced from 0.75rem to move closer */
+}
+
+.form-caption-inline .caption-text {
+    font-size: 0.875rem;
+    color: #6b7280;
+    margin: 0;
+    text-align: left;
+    /* Changed from center to left */
+}
+
+.form-caption-inline .caption-text em {
+    font-style: italic;
+    color: #f59e0b;
+}
+
+/* Original caption with border (for other use cases) */
+.form-caption {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid #f1f5f9;
+}
+
+.caption-text {
+    font-size: 0.875rem;
+    color: #6b7280;
     margin: 0;
     text-align: center;
+}
+
+.caption-text em {
+    font-style: italic;
+    color: #f59e0b;
+}
+
+/* Placeholder Content */
+.placeholder-content {
+    text-align: center;
+    padding: 3rem 2rem;
+    color: #6b7280;
+}
+
+.placeholder-content p {
+    margin: 0;
+    font-size: 1rem;
     font-style: italic;
 }
 
+/* Form Actions */
+.form-actions {
+    padding: 1.5rem;
+    background: #f8fafc;
+    border-top: 1px solid #e2e8f0;
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    position: sticky;
+    bottom: 0;
+}
+
+.btn {
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 100px;
+}
+
+.btn:focus {
+    outline: 2px solid #3182ce;
+    outline-offset: 2px;
+}
+
+.btn-secondary {
+    background: white;
+    color: #374151;
+    border: 2px solid #e2e8f0;
+}
+
+.btn-secondary:hover {
+    background: #f9fafb;
+    border-color: #d1d5db;
+}
+
+.btn-primary {
+    background: #3182ce;
+    color: white;
+    border: 2px solid #3182ce;
+}
+
+.btn-primary:hover {
+    background: #2c5aa0;
+    border-color: #2c5aa0;
+}
+
+.btn-primary:active {
+    background: #2a4f8a;
+    border-color: #2a4f8a;
+}
+
+/* Mobile Responsive */
 @media (max-width: 768px) {
     .modal-overlay {
         padding: 0.5rem;
@@ -90,13 +360,133 @@
     .modal-content {
         max-width: none;
         margin: 0;
+        max-height: 95vh;
     }
 
     .modal-header {
         padding: 1rem;
     }
 
-    .modal-body {
+    .modal-title {
+        font-size: 1.125rem;
+    }
+
+    .form-section {
         padding: 1rem;
     }
+
+    .dropdown-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .select-wrapper {
+        width: 100%;
+    }
+
+    .form-select {
+        /* Ensure font-size is 16px to prevent zoom */
+        font-size: 16px;
+        /* Fix iOS Safari blue text issue on mobile */
+        color: #374151 !important;
+        -webkit-text-fill-color: #374151 !important;
+    }
+
+    .form-row {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .form-input {
+        /* Ensure font-size is 16px to prevent zoom */
+        font-size: 16px;
+        /* Fix iOS Safari blue text issue on mobile */
+        color: #374151 !important;
+        -webkit-text-fill-color: #374151 !important;
+    }
+
+    .form-actions {
+        padding: 1rem;
+        flex-direction: column-reverse;
+    }
+
+    .btn {
+        width: 100%;
+    }
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+    .modal-overlay {
+        padding: 0.25rem;
+    }
+
+    .modal-content {
+        border-radius: 0.5rem;
+    }
+
+    .form-section {
+        padding: 0.75rem;
+    }
+
+    .form-actions {
+        padding: 0.75rem;
+    }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+
+    .form-input,
+    .form-select {
+        border: 2px solid #000;
+    }
+
+    .form-input:focus,
+    .form-select:focus {
+        border-color: #0066cc;
+        box-shadow: 0 0 0 2px #0066cc;
+    }
+
+    .btn-primary {
+        background: #000;
+        border-color: #000;
+    }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    .modal-content {
+        animation: none;
+    }
+
+    .form-input,
+    .form-select,
+    .btn,
+    .close-button {
+        transition: none;
+    }
+}
+
+/* Additional CSS class for elements that should not trigger zoom */
+.no-zoom {
+    font-size: 16px !important;
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    /* Fix iOS Safari blue text issue */
+    color: #374151 !important;
+    -webkit-text-fill-color: #374151 !important;
+}
+
+/* Alternative approach using transform to maintain visual size */
+.no-zoom-transform {
+    font-size: 16px !important;
+    transform: scale(0.875);
+    transform-origin: left top;
+    width: calc(100% / 0.875);
+    height: calc(100% / 0.875);
 }
