@@ -53,7 +53,6 @@ body {
   background: white;
   min-height: 100vh;
   scroll-behavior: smooth;
-  /* REMOVED: padding-bottom: 80px; */
 }
 
 /* ADD: App container styling for proper footer positioning */
@@ -83,7 +82,6 @@ body {
   margin: 0 auto;
   padding: 3rem 2rem;
   flex: 1;
-  /* This helps push footer down */
 }
 
 .welcome-section {
@@ -200,10 +198,6 @@ body {
 
 /* Mobile Responsiveness */
 @media (max-width: 768px) {
-  .header {
-    padding: 1rem;
-  }
-
   .main-content {
     padding: 2rem 1rem;
   }
@@ -258,34 +252,18 @@ body {
     width: 36px;
     height: 36px;
   }
-
-  .dropdown {
-    min-width: 180px;
-    right: -20px;
-  }
 }
 
 /* Focus states for accessibility */
-.user-icon:focus,
-.grid-button:focus,
-.dropdown-item:focus {
-  outline: 2px solid #4f46e5;
+.grid-button:focus {
+  outline: 2px solid #004aa7;
   outline-offset: 2px;
 }
 
 /* Print styles */
 @media print {
-  .header {
-    box-shadow: none;
-    border-bottom: 1px solid #ccc;
-  }
-
   .grid-button {
     box-shadow: none;
     border: 1px solid #ccc;
-  }
-
-  .dropdown {
-    display: none;
   }
 }

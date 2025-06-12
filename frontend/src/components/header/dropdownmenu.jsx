@@ -6,7 +6,7 @@ import { ReactComponent as LogoutIcon } from '../../icons/logout.svg';
 import { ReactComponent as SettingsIcon } from '../../icons/settings.svg'
 import { ReactComponent as PersonIcon } from '../../icons/person.svg';
 
-import './header.css';
+import './dropdownmenu.css';
 
 // Custom hook to create menu items with logout functionality
 const useDropdownMenu = () => {
