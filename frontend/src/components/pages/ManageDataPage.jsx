@@ -1,4 +1,3 @@
-// frontend/src/components/pages/ManageDataPage.jsx
 import React, { useState, useEffect, useRef } from 'react';
 import { SearchBar } from '../search/SearchBar';
 import { SearchFilters } from '../search/SearchFilters';
@@ -108,6 +107,7 @@ const ManageDataPage = () => {
                         showFilters={showFilters}
                         onToggleFilters={handleToggleFilters}
                         onClear={handleClearSearch}
+                        placeholder="Input a name or address"
                     />
 
                     <SearchFilters

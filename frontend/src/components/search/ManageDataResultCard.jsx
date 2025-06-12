@@ -10,7 +10,7 @@ import { ReactComponent as EditIcon } from '../../icons/edit-pen.svg';
 import { ReactComponent as BriefcaseIcon } from '../../icons/briefcase.svg';
 import JobsPopup from '../popups/JobsPopup.jsx';
 import EditPopup from '../popups/EditPopup.jsx';
-import './ResultCard.css';
+import './ManageDataResultCard.css';
 
 /**
  * @param {Object} props

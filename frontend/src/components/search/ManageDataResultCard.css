@@ -29,6 +29,8 @@
     border: 1px solid #e5e7eb;
     cursor: pointer;
     transition: box-shadow 0.2s ease;
+    width: 2.5rem; 
+    height: 2.5rem;
 }
 
 .result-card-edit-button:hover {

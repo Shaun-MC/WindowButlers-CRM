@@ -1,6 +1,6 @@
 // frontend/src/components/search/SearchResults.jsx
 import React from 'react';
-import ResultCard from './ResultCard';
+import ResultCard from './ManageDataResultCard.jsx';
 import { ReactComponent as SearchIcon } from '../../icons/magnifying-glass.svg';
 import { ReactComponent as AlertIcon } from '../../icons/checkbox-alert.svg';
 import './SearchResults.css';

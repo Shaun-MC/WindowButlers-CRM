@@ -14,6 +14,7 @@ import './SearchBar.css';
  * @param {boolean} props.showFilters
  * @param {function} props.onToggleFilters
  * @param {function} props.onClear
+ * @param {string} [props.placeholder=""] 
  */
 export const SearchBar = ({
   searchQuery,
@@ -23,6 +24,7 @@ export const SearchBar = ({
   showFilters,
   onToggleFilters,
   onClear,
+  placeholder = "", 
 }) => {
 
   const handleSubmit = (e) => {
@@ -54,7 +56,7 @@ export const SearchBar = ({
             type="text"
             value={searchQuery}
             onChange={handleInputChange}
-            placeholder="Input names or addresses"
+            placeholder={placeholder} // Use the prop here
             className="search-bar-input"
             disabled={isLoading}
           />
