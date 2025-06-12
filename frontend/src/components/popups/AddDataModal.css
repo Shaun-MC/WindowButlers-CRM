@@ -151,24 +151,9 @@
     transform: translateY(-50%);
     pointer-events: none;
     color: #6b7280;
-    transition: transform 0.2s ease;
-}
-
-.select-chevron svg {
     width: 20px;
     height: 20px;
     stroke-width: 2;
-}
-
-/* Rotate chevron when select is focused */
-.form-select:focus+.select-chevron {
-    transform: translateY(-50%) rotate(180deg);
-}
-
-.form-select:focus {
-    outline: none;
-    border-color: #3182ce;
-    box-shadow: 0 0 0 3px rgba(49, 130, 206, 0.1);
 }
 
 /* Form Rows and Groups */
@@ -193,7 +178,7 @@
     gap: 0.5rem;
     font-size: 0.875rem;
     font-weight: 500;
-    color: #374151;
+    color: #000000;
     margin-bottom: 0.5rem;
 }
 
@@ -215,7 +200,7 @@
     -webkit-user-select: text;
     user-select: text;
     /* Fix iOS Safari blue text issue */
-    color: #374151 !important;
+    color: #8d97a8 !important;
     -webkit-text-fill-color: #374151 !important;
 }
 
@@ -226,7 +211,7 @@
 }
 
 .form-input::placeholder {
-    color: #9ca3af;
+    color: #ffffff;
 }
 
 /* Required Indicator Icon */
@@ -235,9 +220,6 @@
     cursor: help;
     display: flex;
     align-items: center;
-}
-
-.required-indicator svg {
     width: 14px;
     height: 14px;
 }
@@ -250,7 +232,7 @@
 
 .form-caption-inline .caption-text {
     font-size: 0.875rem;
-    color: #6b7280;
+    color: #ffffff;
     margin: 0;
     text-align: left;
     /* Changed from center to left */
@@ -270,7 +252,7 @@
 
 .caption-text {
     font-size: 0.875rem;
-    color: #6b7280;
+    color: #8c98af;
     margin: 0;
     text-align: center;
 }
@@ -284,7 +266,7 @@
 .placeholder-content {
     text-align: center;
     padding: 3rem 2rem;
-    color: #6b7280;
+    color: #ffffff;
 }
 
 .placeholder-content p {
@@ -309,7 +291,7 @@
     padding: 0.75rem 1.5rem;
     border-radius: 0.5rem;
     font-size: 0.875rem;
-    font-weight: 500;
+    font-weight: 700;
     cursor: pointer;
     transition: all 0.2s ease;
     border: none;
