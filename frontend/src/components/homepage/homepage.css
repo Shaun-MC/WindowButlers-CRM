@@ -18,6 +18,7 @@
     gap: 2rem;
     max-width: 800px;
     margin: 0 auto;
+    margin-bottom: 3rem;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     grid-template-areas:
         "btn1 btn2"
@@ -98,8 +99,8 @@
 
 /* Button icon and text styles */
 .button-icon {
-    width: 48px;
-    height: 48px;
+    width: 64px;
+    height: 64px;
     color: #004aa7;
     transition: all 0.3s ease;
 }
@@ -170,6 +171,30 @@
     .button-icon {
         width: 36px;
         height: 36px;
+    }
+}
+
+@media (min-width: 1024px) {
+    
+    .button-grid {
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-areas:
+            "btn1 btn2 btn3 btn4"
+            "btn5 btn6 btn7 btn8";
+    }
+
+    .grid-button {
+        padding: 2.5rem 2rem;
+        min-height: 160px;
+    }
+
+    .button-icon {
+        width: 72px;
+        height: 72px;
+    }
+
+    .button-text {
+        font-size: 1.2rem;
     }
 }
 

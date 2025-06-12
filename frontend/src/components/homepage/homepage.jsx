@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Button from './button.js';
-import '../../App.css';
+import './homepage.css';
 
 const HomePage = () => {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
