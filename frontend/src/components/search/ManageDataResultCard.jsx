@@ -17,7 +17,7 @@ import './ManageDataResultCard.css';
  * @param {import('../types/index.js').SearchResult} props.result
  * @param {function} props.onResultUpdate - Callback for when result is updated
  */
-export const ResultCard = ({ result, onResultUpdate }) => {
+export const ManageDataResultCard = ({ result, onResultUpdate }) => {
   const [isJobsPopupOpen, setIsJobsPopupOpen] = useState(false);
   const [isEditPopupOpen, setIsEditPopupOpen] = useState(false);
   const [currentResult, setCurrentResult] = useState(result);
@@ -158,4 +158,4 @@ export const ResultCard = ({ result, onResultUpdate }) => {
   );
 };
 
-export default ResultCard;
+export default ManageDataResultCard;

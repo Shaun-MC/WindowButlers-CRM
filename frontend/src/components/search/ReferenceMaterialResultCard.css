@@ -1,0 +1,316 @@
+.reference-result-card {
+    background: white;
+    border-radius: 0.75rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    border: 1px solid #f3f4f6;
+    position: relative;
+    transition: box-shadow 0.3s ease;
+}
+
+.reference-result-card:hover {
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* Add/Edit Button */
+.reference-result-card-add-container {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    opacity: 1;
+    transition: opacity 0.2s ease;
+}
+
+.reference-result-card-add-button {
+    padding: 0.5rem;
+    background: white;
+    border-radius: 50%;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    border: 1px solid #e5e7eb;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.reference-result-card-add-button:hover {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    background: #f9fafb;
+}
+
+.reference-result-card-add-icon {
+    height: 1.25rem;
+    width: 1.25rem;
+    color: #059669;
+    transition: color 0.2s ease;
+    stroke-width: 2.5;
+}
+
+.reference-result-card-add-button:hover .reference-result-card-add-icon {
+    color: #047857;
+    transform: scale(1.1);
+}
+
+/* Card Content */
+.reference-result-card-content {
+    padding: 1.5rem;
+}
+
+.reference-result-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+    padding-right: 3rem;
+}
+
+.reference-result-card-header-info {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.reference-result-card-home-icon {
+    height: 1.5rem;
+    width: 1.5rem;
+    color: #059669;
+}
+
+.reference-result-card-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #111827;
+    margin: 0;
+}
+
+.reference-result-card-address {
+    font-size: 1rem;
+    color: #6b7280;
+    margin: 0;
+}
+
+/* General Notes Section */
+.reference-result-card-section {
+    margin-bottom: 1.5rem;
+}
+
+.reference-result-card-section:last-child {
+    margin-bottom: 0;
+}
+
+.reference-result-card-section-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #374151;
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.reference-result-card-section-icon {
+    height: 1.125rem;
+    width: 1.125rem;
+    color: #6b7280;
+}
+
+.reference-result-card-notes-text {
+    font-size: 0.875rem;
+    color: #4b5563;
+    line-height: 1.6;
+    padding: 0.75rem;
+    background: #f9fafb;
+    border-radius: 0.5rem;
+    border: 1px solid #e5e7eb;
+    min-height: 4rem;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+.reference-result-card-notes-text.empty {
+    color: #9ca3af;
+    font-style: italic;
+}
+
+/* Action Buttons Section */
+.reference-result-card-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.reference-result-card-action-row {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.reference-result-card-action-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.625rem 1.25rem;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    flex: none;
+    width: auto;
+    min-width: 0;
+}
+
+/* Power Source Button */
+.reference-result-card-power-button {
+    background-color: #dc2626;
+    color: white;
+}
+
+.reference-result-card-power-button:hover {
+    background-color: #b91c1c;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    transform: translateY(-1px);
+}
+
+.reference-result-card-power-button:active {
+    background-color: #991b1b;
+    transform: translateY(0);
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+/* Holiday Lights Button */
+.reference-result-card-holiday-button {
+    background-color: #7c3aed;
+    color: white;
+}
+
+.reference-result-card-holiday-button:hover {
+    background-color: #6d28d9;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    transform: translateY(-1px);
+}
+
+.reference-result-card-holiday-button:active {
+    background-color: #5b21b6;
+    transform: translateY(0);
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+.reference-result-card-action-button:focus {
+    outline: 2px solid #3b82f6;
+    outline-offset: 2px;
+}
+
+/* Action button icons */
+.reference-result-card-action-icon {
+    height: 1rem;
+    width: 1rem;
+    flex-shrink: 0;
+}
+
+/* Action button text */
+.reference-result-card-action-text {
+    font-weight: 500;
+}
+
+/* Footer */
+.reference-result-card-footer {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding-top: 1rem;
+    border-top: 1px solid #f3f4f6;
+    margin-top: 1.5rem;
+}
+
+.reference-result-card-footer-icon {
+    height: 1rem;
+    width: 1rem;
+    color: #9ca3af;
+}
+
+.reference-result-card-footer-text {
+    font-size: 0.875rem;
+    color: #6b7280;
+}
+
+/* Mobile Optimizations */
+@media (max-width: 640px) {
+    .reference-result-card-content {
+        padding: 1rem;
+    }
+
+    .reference-result-card-header {
+        margin-bottom: 1rem;
+        padding-right: 2.5rem;
+    }
+
+    .reference-result-card-title {
+        font-size: 1.125rem;
+    }
+
+    .reference-result-card-address {
+        font-size: 0.875rem;
+    }
+
+    .reference-result-card-section {
+        margin-bottom: 1rem;
+    }
+
+    .reference-result-card-action-button {
+        padding: 0.75rem 1rem;
+        font-size: 1rem;
+    }
+
+    .reference-result-card-add-button {
+        width: 2.25rem;
+        height: 2.25rem;
+    }
+
+    .reference-result-card-add-icon {
+        height: 1.125rem;
+        width: 1.125rem;
+    }
+}
+
+/* Tablet Styles */
+@media (min-width: 641px) and (max-width: 1023px) {
+    .reference-result-card-content {
+        padding: 1.25rem;
+    }
+}
+
+/* Accessibility */
+.reference-result-card-add-button:focus,
+.reference-result-card-action-button:focus {
+    outline: 2px solid #3b82f6;
+    outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .reference-result-card {
+        border: 2px solid #000;
+    }
+
+    .reference-result-card-notes-text {
+        border: 2px solid #000;
+    }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+
+    .reference-result-card,
+    .reference-result-card-add-button,
+    .reference-result-card-add-icon,
+    .reference-result-card-action-button {
+        transition: none;
+    }
+}

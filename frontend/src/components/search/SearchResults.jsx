@@ -1,6 +1,5 @@
-// frontend/src/components/search/SearchResults.jsx
+// frontend/src/components/features/manage-data/components/SearchResults.jsx
 import React from 'react';
-import ResultCard from './ManageDataResultCard.jsx';
 import { ReactComponent as SearchIcon } from '../../icons/magnifying-glass.svg';
 import { ReactComponent as AlertIcon } from '../../icons/checkbox-alert.svg';
 import './SearchResults.css';
@@ -11,12 +10,14 @@ import './SearchResults.css';
  * @param {boolean} props.loading
  * @param {string|null} props.error
  * @param {boolean} props.hasSearched
+ * @param {React.ComponentType} [props.cardComponent] - Optional custom card component to render each result
  */
 export const SearchResults = ({
   results,
   loading,
   error,
   hasSearched,
+  cardComponent: CardComponent,
 }) => {
   if (loading) {
     return (
@@ -50,14 +51,12 @@ export const SearchResults = ({
       <div className="search-results-container">
         <div className="search-results-empty">
           <SearchIcon className="search-results-empty-icon" />
-          <div className="search-results-empty-content">
-            <h3 className="search-results-empty-title">
-              No results found
-            </h3>
-            <p className="search-results-empty-subtitle">
-              Try adjusting your search terms or filters
-            </p>
-          </div>
+          <h3 className="search-results-empty-title">
+            No results found
+          </h3>
+          <p className="search-results-empty-subtitle">
+            Try adjusting your search terms or filters
+          </p>
         </div>
       </div>
     );
@@ -65,16 +64,19 @@ export const SearchResults = ({
 
   return (
     <div className="search-results-container">
-      {hasSearched && (
+      <div className="search-results-header">
+        {hasSearched && (
         <div className="search-results-header">
           <p className="search-results-count">
             Found {results.length} result{results.length !== 1 ? 's' : ''}
           </p>
         </div>
       )}
+      </div>
+
       <div className="search-results-grid">
         {results.map((result) => (
-          <ResultCard key={result.id} result={result} />
+          <CardComponent key={result.id} result={result} />
         ))}
       </div>
     </div>

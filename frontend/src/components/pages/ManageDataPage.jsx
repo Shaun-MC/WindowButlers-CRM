@@ -3,6 +3,7 @@ import { SearchBar } from '../search/SearchBar';
 import { SearchFilters } from '../search/SearchFilters';
 import { SearchResults } from '../search/SearchResults';
 import { useSearch } from '../hooks/useSearch';
+import { ManageDataResultCard } from '../search/ManageDataResultCard';
 import './ManageData.css';
 
 const ManageDataPage = () => {
@@ -121,6 +122,7 @@ const ManageDataPage = () => {
                         loading={loading}
                         error={error}
                         hasSearched={hasSearched}
+                        cardComponent={ManageDataResultCard}
                     />
                 </div>
             </div>

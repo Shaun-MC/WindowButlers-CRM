@@ -117,6 +117,7 @@ const getMockResults = (query) => {
             phone: "+1 (555) 123-4567",
             type: "person",
             lastUpdated: "2024-01-15T10:30:00Z",
+            generalNotes: "test",
         },
         {
             id: "2",
@@ -132,6 +133,7 @@ const getMockResults = (query) => {
             phone: "+1 (555) 987-6543",
             type: "business",
             lastUpdated: "2024-01-20T14:45:00Z",
+            generalNotes: "test",
         },
         {
             id: "3",
@@ -147,6 +149,7 @@ const getMockResults = (query) => {
             phone: "+1 (555) 246-8135",
             type: "person",
             lastUpdated: "2024-01-18T09:15:00Z",
+            generalNotes: "test",
         },
     ];
 
@@ -154,8 +157,9 @@ const getMockResults = (query) => {
     return mockResults.filter(
         (result) =>
             result.name.toLowerCase().includes(query.toLowerCase()) ||
-            Object.values(result.address).some((value) =>
-                value.toLowerCase().includes(query.toLowerCase())
-            )
+            (result.address &&
+                Object.values(result.address).some((value) =>
+                    value.toLowerCase().includes(query.toLowerCase())
+                ))
     );
 };

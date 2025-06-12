@@ -3,6 +3,7 @@ import { SearchBar } from '../search/SearchBar';
 import { SearchFilters } from '../search/SearchFilters';
 import { SearchResults } from '../search/SearchResults';
 import { useSearch } from '../hooks/useSearch';
+import { ReferenceMaterialResultCard } from '../search/ReferenceMaterialResultCard';
 import './ManageData.css';
 
 const ReferenceMaterialPage = () => {
@@ -121,6 +122,7 @@ const ReferenceMaterialPage = () => {
                         loading={loading}
                         error={error}
                         hasSearched={hasSearched}
+                        cardComponent={ReferenceMaterialResultCard}
                     />
                 </div>
             </div>
