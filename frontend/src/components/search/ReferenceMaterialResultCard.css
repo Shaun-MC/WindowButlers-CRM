@@ -46,7 +46,7 @@
     width: 1.25rem;
     color: #059669;
     transition: color 0.2s ease;
-    stroke-width: 2.5;
+    stroke-width: 1.5;
 }
 
 .reference-result-card-add-button:hover .reference-result-card-add-icon {
