@@ -1,4 +1,5 @@
 // Button.js - Separate Button class file
+import { ReactComponent as AddDataIcon } from '../../icons/circle-plus.svg';
 import { ReactComponent as ManageDataIcon } from '../../icons/account-settings.svg';
 import { ReactComponent as ReferenceMaterialIcon } from '../../icons/reference-material.svg';
 import { ReactComponent as MetricsDashboardIcon } from '../../icons/metrics.svg';
@@ -17,13 +18,14 @@ class Button {
     // Method to get route based on button ID
     getRoute() {
         const routes = {
-            1: "/manage-data",
-            2: "/reference-material",
-            3: "/metrics-dashboard",
-            4: "/route-jobs",
-            5: "/client-outreach",
-            6: "/appointment-scheduling",
-            7: "/payment-processing",
+            1: "/add-data",
+            2: "/manage-data",
+            3: "/reference-material",
+            4: "/metrics-dashboard",
+            5: "/route-jobs",
+            6: "/client-outreach",
+            7: "/appointment-scheduling",
+            8: "/payment-processing",
         };
         return routes[this.id] || "/";
     }
@@ -41,13 +43,14 @@ class Button {
     // Static method to create all buttons
     static createAllButtons() {
         return [
-            new Button(1, ManageDataIcon, "Manage Data"),
-            new Button(2, ReferenceMaterialIcon, "Reference Material"),
-            new Button(3, MetricsDashboardIcon, "Metrics Dashboard"),
-            new Button(4, RouteJobsIcon, "Route-Jobs"),
-            new Button(5, ClientOutreachIcon, "Client Outreach"),
-            new Button(6, AppointmentSchedulingIcon, "Appointment Scheduling"),
-            new Button(7, PaymentProcessingIcon, "Payment Processing"),
+            new Button(1, AddDataIcon, "Add Data"),
+            new Button(2, ManageDataIcon, "Manage Data"),
+            new Button(3, ReferenceMaterialIcon, "Reference Material"),
+            new Button(4, MetricsDashboardIcon, "Metrics Dashboard"),
+            new Button(5, RouteJobsIcon, "Route-Jobs"),
+            new Button(6, ClientOutreachIcon, "Client Outreach"),
+            new Button(7, AppointmentSchedulingIcon, "Appointment Scheduling"),
+            new Button(8, PaymentProcessingIcon, "Payment Processing"),
         ];
     }
 }
