@@ -6,7 +6,7 @@
     bottom: 0;
     background-color: rgba(0, 0, 0, 0.5);
     display: flex;
-    align-items: center;
+    align-items: top;
     justify-content: center;
     z-index: 1000;
     padding: 1rem;
@@ -16,7 +16,7 @@
     background: white;
     border-radius: 0.75rem;
     box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-    max-width: 500px;
+    max-width: 1000px;
     width: 100%;
     max-height: 90vh;
     overflow: hidden;

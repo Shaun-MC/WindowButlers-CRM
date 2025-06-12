@@ -17,20 +17,28 @@
 }
 
 .add-data-button {
-    display: flex;
-    align-items: center;
-    margin: 0 auto;
-    gap: 0.5rem;
-    padding: 0.75rem 1.5rem;
-    background-color: #38d971;
-    color: black;
+    background: white;
     border: none;
-    border-radius: 0.5rem;
-    font-size: 1rem;
-    font-weight: 500;
+    border-radius: 10px;
+    padding: 1.5rem 2rem;
+    /* Adjusted padding for horizontal layout */
     cursor: pointer;
-    transition: all 0.2s ease-in-out;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: row;
+    /* Changed from column to row */
+    align-items: center;
+    justify-content: flex-start;
+    /* Align content to the left */
+    gap: 1rem;
+    /* Space between icon and text */
+    min-height: 80px;
+    /* Reduced height for horizontal layout */
+    min-width: 200px;
+    /* Ensure minimum width */
+    position: relative;
+    overflow: hidden;
 }
 
 .add-data-button:hover {
@@ -43,11 +51,32 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.button-icon {
-    width: 20px;
-    height: 20px;
-    stroke-width: 2;
-    stroke: currentColor;
+.add-data-button-icon {
+    width: 2.5rem;
+    /* Slightly smaller for horizontal layout */
+    height: 2.5rem;
+    color: #004aa7;
+    stroke-width: 1.5;
+    /* Fixed stroke width - was 10 which is too thick */
+    flex-shrink: 0;
+    /* Prevent icon from shrinking */
+}
+
+.add-data-button-text {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #000000;
+    text-align: left;
+    /* Align text to the left */
+    line-height: 1.2;
+}
+
+/* Optional: Center the button on the page */
+.add-data-button {
+    margin: 0 auto;
+    /* Center the button horizontally */
+    width: fit-content;
+    /* Button width fits content */
 }
 
 @media (max-width: 768px) {
@@ -58,10 +87,64 @@
     .page-title {
         font-size: 1.5rem;
         margin-bottom: 1.5rem;
+        padding: 2rem;
+        /* Reduced padding on mobile */
     }
 
     .add-data-button {
         width: 100%;
+        /* Full width on mobile */
         justify-content: center;
+        /* Center content on mobile */
+        padding: 1.25rem 1.5rem;
+        /* Adjusted mobile padding */
+        min-height: 70px;
+        /* Smaller height on mobile */
+    }
+
+    .add-data-button-icon {
+        width: 2rem;
+        /* Smaller icon on mobile */
+        height: 2rem;
+    }
+
+    .add-data-button-text {
+        font-size: 1rem;
+        /* Smaller text on mobile */
+        text-align: center;
+        /* Center text on mobile */
+    }
+}
+
+/* Responsive design for different screen sizes */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .add-data-button {
+        padding: 1.75rem 2.25rem;
+        min-height: 85px;
+    }
+
+    .add-data-button-icon {
+        width: 2.75rem;
+        height: 2.75rem;
+    }
+
+    .add-data-button-text {
+        font-size: 1.05rem;
+    }
+}
+
+@media (min-width: 1025px) {
+    .add-data-button {
+        padding: 2rem 2.5rem;
+        min-height: 90px;
+    }
+
+    .add-data-button-icon {
+        width: 3rem;
+        height: 3rem;
+    }
+
+    .add-data-button-text {
+        font-size: 1.2rem;
     }
 }

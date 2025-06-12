@@ -98,8 +98,8 @@
 .button-icon {
     width: 3rem;
     height: 3rem;
-    color: #3c8108;
-    stroke-width: 2;
+    color: #004aa7;
+    stroke-width: 10;
 }
 
 .button-text {
@@ -178,8 +178,8 @@
     }
 
     .button-icon {
-        width: 2rem;
-        height: 2rem;
+        width: 3rem;
+        height: 3rem;
     }
 
     .button-text {

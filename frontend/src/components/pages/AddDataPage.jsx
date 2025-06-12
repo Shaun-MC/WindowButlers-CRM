@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {ReactComponent as AddDataIcon} from '../../icons/circle-plus.svg';
+import { ReactComponent as AddDataIcon } from '../../icons/circle-plus.svg';
 import AddDataModal from '../popups/AddDataModal.jsx';
 import './AddDataPage.css';
 
@@ -16,11 +16,11 @@ const AddDataPage = () => {
 
     return (
         <div className="add-data-page">
-            <h1 className="page-title">Add New Client Data and Business Assets</h1>
+            <h1 className="page-title">Add New Client Data & Business Assets</h1>
 
             <button className="add-data-button" onClick={handleAddDataClick}>
-                <AddDataIcon className="button-icon" width={24} height={24} />
-                <span className="button-text">Add Data</span>
+                <AddDataIcon className="add-data-button-icon" width={24} height={24} />
+                <span className="add-data-button-text">Add Data</span>
             </button>
 
             {isModalOpen && (
