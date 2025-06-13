@@ -30,3 +30,205 @@
     width: calc(100% / 0.875);
     height: calc(100% / 0.875);
 }
+
+/* Success Popup Styles */
+.success-popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+}
+
+.success-popup {
+    background: white;
+    border-radius: 0.75rem;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    border: 2px solid #10b981;
+}
+
+.success-popup-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.5rem 1.5rem 0 1.5rem;
+    background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+    border-radius: 0.75rem 0.75rem 0 0;
+}
+
+.success-popup-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #059669;
+    margin: 0;
+}
+
+.success-popup-close {
+    background: none;
+    border: none;
+    color: #059669;
+    cursor: pointer;
+    padding: 0.25rem;
+    border-radius: 0.25rem;
+    transition: color 0.2s ease;
+}
+
+.success-popup-close:hover {
+    color: #047857;
+}
+
+.success-popup-content {
+    padding: 1.5rem;
+    text-align: center;
+    background: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 100%);
+}
+
+.success-icon {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+    color: #10b981;
+}
+
+.success-popup-message {
+    color: #374151;
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.5;
+}
+
+.success-popup-actions {
+    padding: 0 1.5rem 1.5rem 1.5rem;
+    display: flex;
+    justify-content: center;
+    background: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 100%);
+    border-radius: 0 0 0.75rem 0.75rem;
+}
+
+.btn-success {
+    background: #10b981;
+    color: white;
+    border: 2px solid #10b981;
+    min-width: 100px;
+}
+
+.btn-success:hover {
+    background: #059669;
+    border-color: #059669;
+}
+
+.btn-success:active {
+    background: #047857;
+    border-color: #047857;
+}
+
+/* Error Popup Styles */
+.error-popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+}
+
+.error-popup {
+    background: white;
+    border-radius: 0.75rem;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.error-popup-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.5rem 1.5rem 0 1.5rem;
+}
+
+.error-popup-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #dc2626;
+    margin: 0;
+}
+
+.error-popup-close {
+    background: none;
+    border: none;
+    color: #6b7280;
+    cursor: pointer;
+    padding: 0.25rem;
+    border-radius: 0.25rem;
+    transition: color 0.2s ease;
+}
+
+.error-popup-close:hover {
+    color: #374151;
+}
+
+.error-popup-content {
+    padding: 1rem 1.5rem;
+}
+
+.error-popup-message {
+    color: #374151;
+    margin: 0;
+    font-size: 0.875rem;
+    line-height: 1.5;
+}
+
+.error-popup-actions {
+    padding: 0 1.5rem 1.5rem 1.5rem;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.error-popup-actions .btn {
+    min-width: 80px;
+}
+
+/* Mobile responsive */
+@media (max-width: 480px) {
+    .success-popup,
+    .error-popup {
+        width: 95%;
+        margin: 1rem;
+    }
+    
+    .success-popup-header,
+    .success-popup-content,
+    .success-popup-actions,
+    .error-popup-header,
+    .error-popup-content,
+    .error-popup-actions {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+    
+    .success-icon {
+        margin-bottom: 0.75rem;
+    }
+    
+    .success-icon svg {
+        width: 40px;
+        height: 40px;
+    }
+}

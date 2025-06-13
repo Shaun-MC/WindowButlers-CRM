@@ -1,20 +1,17 @@
 /* Home Association Section */
 .home-association-section {
-    margin-top: 2rem;
+    margin-top: 1rem;
     padding-top: 1.5rem;
-    border-top: 1px solid #f1f5f9;
 }
 
 .home-options {
     margin-top: 1rem;
-    margin-left: 1rem;
 }
 
 /* Home Form Styles */
 .home-form {
     margin-top: 1rem;
     padding-top: 1.5rem;
-    border-top: 1px solid #f1f5f9;
 }
 
 .zip-code-input {
@@ -38,7 +35,6 @@
 .holiday-lights-section {
     margin-top: 2rem;
     padding-top: 1.5rem;
-    border-top: 1px solid #f1f5f9;
 }
 
 .section-title {

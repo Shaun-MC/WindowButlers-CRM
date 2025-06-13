@@ -1,7 +1,7 @@
 import React from 'react';
 import FormInputGroup from './FormInputGroup.jsx';
 import RadioGroup from '../input/RadioGroup.jsx';
-import { FormSection, FormRow } from './FormSection';
+import { FormRow } from './FormSection';
 import './HomeForm.css';
 
 const HomeForm = ({ formData, onInputChange }) => {
@@ -19,7 +19,7 @@ const HomeForm = ({ formData, onInputChange }) => {
     ];
 
     return (
-        <FormSection className="home-form">
+        <div className="home-form">
             {/* Address Row: Street Address, City */}
             <FormRow>
                 <FormInputGroup
@@ -70,7 +70,7 @@ const HomeForm = ({ formData, onInputChange }) => {
                     options={holidayLightsOptions}
                 />
             </div>
-        </FormSection>
+        </div>
     );
 };
 

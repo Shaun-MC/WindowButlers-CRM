@@ -20,6 +20,8 @@
     display: flex;
     gap: 1.5rem;
     flex-wrap: wrap;
+    margin-left: 0; 
+    padding-left: 0; 
 }
 
 .radio-option {
@@ -29,7 +31,6 @@
     cursor: pointer;
     font-size: 0.875rem;
     color: #374151;
-    transition: color 0.2s ease;
 }
 
 .radio-option:hover {

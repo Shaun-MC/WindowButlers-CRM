@@ -1,11 +1,6 @@
 /* Form Styles */
 .form-section {
     padding: 1.5rem;
-    border-bottom: 1px solid #f1f5f9;
-}
-
-.form-section:last-child {
-    border-bottom: none;
 }
 
 /* Form Rows */
