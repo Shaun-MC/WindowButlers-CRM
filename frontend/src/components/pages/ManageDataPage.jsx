@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { SearchBar } from '../search/SearchBar';
 import { SearchFilters } from '../search/SearchFilters';
 import { SearchResults } from '../search/SearchResults';
 import { useSearch } from '../hooks/useSearch';
-import { ManageDataResultCard } from '../search/ManageDataResultCard';
+import { ManageDataResultCard } from '../search/ManageDataResultCard.jsx';
 import './ManageData.css';
 
 const ManageDataPage = () => {
@@ -13,47 +13,57 @@ const ManageDataPage = () => {
 
     // Ref to track the debounce timer
     const debounceTimerRef = useRef(null);
+    const lastSearchRef = useRef('');
 
-    // Use the hook's state instead of duplicating it
+    // Use the hook's state
     const { results, loading, error, hasSearched, searchApi, resetSearch } = useSearch();
 
-    // Auto-search when query changes (debounced)
-    useEffect(() => {
+    // Debounced search function
+    const debouncedSearch = useCallback((query, currentFilters) => {
         // Clear any existing timer
         if (debounceTimerRef.current) {
             clearTimeout(debounceTimerRef.current);
         }
 
-        // Only set up debounced search if there's a query
-        if (searchQuery.trim().length >= 2) {
+        // Only set up debounced search if there's a query and it's different from last search
+        const trimmedQuery = query.trim();
+        if (trimmedQuery.length >= 2 && trimmedQuery !== lastSearchRef.current) {
             debounceTimerRef.current = setTimeout(() => {
-                searchApi(searchQuery, filters);
+                lastSearchRef.current = trimmedQuery;
+                searchApi(trimmedQuery, currentFilters);
             }, 500);
         }
+    }, [searchApi]);
+
+    // Auto-search when query changes (debounced)
+    useEffect(() => {
+        debouncedSearch(searchQuery, filters);
 
         return () => {
             if (debounceTimerRef.current) {
                 clearTimeout(debounceTimerRef.current);
             }
         };
-    }, [searchQuery, filters, searchApi]);
+    }, [searchQuery, filters, debouncedSearch]);
 
-    const handleSearchSubmit = () => {
+    const handleSearchSubmit = useCallback(() => {
         // Clear any pending debounced search
         if (debounceTimerRef.current) {
             clearTimeout(debounceTimerRef.current);
         }
 
-        if (searchQuery.trim()) {
-            searchApi(searchQuery, filters);
+        const trimmedQuery = searchQuery.trim();
+        if (trimmedQuery) {
+            lastSearchRef.current = trimmedQuery;
+            searchApi(trimmedQuery, filters);
         }
-    };
+    }, [searchQuery, filters, searchApi]);
 
-    const handleToggleFilters = () => {
-        setShowFilters(!showFilters);
-    };
+    const handleToggleFilters = useCallback(() => {
+        setShowFilters(prev => !prev);
+    }, []);
 
-    const handleClearSearch = () => {
+    const handleClearSearch = useCallback(() => {
         // Clear any pending debounced search immediately
         if (debounceTimerRef.current) {
             clearTimeout(debounceTimerRef.current);
@@ -61,36 +71,51 @@ const ManageDataPage = () => {
 
         // Reset search state IMMEDIATELY (synchronous)
         resetSearch();
+        lastSearchRef.current = '';
 
         // Then update the input and filters
         setSearchQuery('');
         setShowFilters(false);
-    };
+    }, [resetSearch]);
 
     // Handle search query changes
-    const handleSearchChange = (newQuery) => {
+    const handleSearchChange = useCallback((newQuery) => {
         setSearchQuery(newQuery);
 
-        // If the query is manually cleared (backspace/delete), immediately reset
+        // If the query is manually cleared, immediately reset
         if (newQuery.trim() === '') {
             // Clear any pending search
             if (debounceTimerRef.current) {
                 clearTimeout(debounceTimerRef.current);
             }
             resetSearch();
+            lastSearchRef.current = '';
         }
-    };
+    }, [resetSearch]);
+
+    // Handle filter changes
+    const handleFiltersChange = useCallback((newFilters) => {
+        setFilters(newFilters);
+    }, []);
+
+    // Cleanup on unmount
+    useEffect(() => {
+        return () => {
+            if (debounceTimerRef.current) {
+                clearTimeout(debounceTimerRef.current);
+            }
+        };
+    }, []);
 
     return (
         <div className="manage-data-page">
-
             {/* Subheader */}
             <div className="manage-data-subheader">
                 <div className="manage-data-container">
                     <div className="manage-data-header">
                         <div className="manage-data-header-content">
                             <h1 className="manage-data-title">
-                                View and Edit Client & Business Records 
+                                View and Edit Client & Business Records
                             </h1>
                         </div>
                     </div>
@@ -113,7 +138,7 @@ const ManageDataPage = () => {
 
                     <SearchFilters
                         filters={filters}
-                        onFiltersChange={setFilters}
+                        onFiltersChange={handleFiltersChange}
                         isVisible={showFilters}
                     />
 

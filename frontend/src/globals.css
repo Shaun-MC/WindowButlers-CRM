@@ -22,6 +22,46 @@
     --transition-fast: 0.15s ease;
     --transition-normal: 0.3s ease;
     --transition-slow: 0.5s ease;
+    --z-dropdown: 1000;
+    --z-sticky: 1020;
+    --z-fixed: 1030;
+    --z-modal-backdrop: 1040;
+    --z-modal: 1050;
+    --z-popover: 1060;
+    --z-tooltip: 1070;
+    --z-toast: 1080;
+    --z-system-modal: 1090;
+}
+
+.jobs-popup-overlay {
+    z-index: var(--z-modal-backdrop) !important;
+}
+
+/* Edit Popup */
+.edit-popup-overlay {
+    z-index: var(--z-modal-backdrop) !important;
+}
+
+/* Add Data Modal overlays */
+.success-popup-overlay,
+.error-popup-overlay {
+    z-index: var(--z-system-modal) !important;
+}
+
+/* Side Menu */
+.side-menu-overlay {
+    z-index: var(--z-modal-backdrop) !important;
+}
+
+/* Header dropdown */
+.dropdown {
+    z-index: var(--z-dropdown) !important;
+}
+
+/* Search bar elements - ensure they stay below modals */
+.search-bar-icon-left,
+.search-bar-controls {
+    z-index: 1 !important;
 }
 
 /* Reset and base styles */

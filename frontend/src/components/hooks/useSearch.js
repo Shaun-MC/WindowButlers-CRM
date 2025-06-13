@@ -1,8 +1,24 @@
+// Enhanced useSearch hook with comprehensive debugging
 // frontend/src/components/hooks/useSearch.js
+import React from "react";
 import { useState, useCallback } from "react";
 
-// This would be your Spring Boot API endpoint
 const API_BASE_URL = "http://localhost:8080/api";
+
+// Debug utility function
+const debugLog = (category, message, data = null) => {
+    const timestamp = new Date().toISOString().split('T')[1].split('.')[0];
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+    const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+    
+    console.group(`🔍 [${timestamp}] ${category} - iOS:${isIOS} Safari:${isSafari}`);
+    console.log(message);
+    if (data) {
+        console.log('Data:', data);
+    }
+    console.trace();
+    console.groupEnd();
+};
 
 export const useSearch = () => {
     const [results, setResults] = useState([]);
@@ -10,15 +26,41 @@ export const useSearch = () => {
     const [error, setError] = useState(null);
     const [hasSearched, setHasSearched] = useState(false);
 
+    debugLog('HOOK_INIT', 'useSearch hook initialized');
+
     const searchApi = useCallback(async (query, filters) => {
-        setLoading(true);
-        setError(null);
-        setHasSearched(true);
+        debugLog('SEARCH_START', 'searchApi called', { 
+            query, 
+            filters, 
+            currentLoading: loading,
+            queryType: typeof query,
+            queryLength: query?.length,
+            trimmedQuery: query?.trim(),
+            trimmedLength: query?.trim()?.length
+        });
+
+        // Prevent multiple simultaneous searches
+        if (loading) {
+            debugLog('SEARCH_BLOCKED', 'Search blocked - already loading');
+            return;
+        }
 
         try {
-            // Construct query parameters
+            debugLog('SEARCH_STATE_UPDATE', 'Setting loading state');
+            setLoading(true);
+            setError(null);
+            setHasSearched(true);
+
+            const trimmedQuery = query.trim();
+            debugLog('SEARCH_PARAMS', 'Building search parameters', {
+                originalQuery: query,
+                trimmedQuery,
+                filters,
+                API_BASE_URL
+            });
+
             const params = new URLSearchParams({
-                q: query,
+                q: trimmedQuery,
                 type: filters.type,
             });
 
@@ -26,14 +68,33 @@ export const useSearch = () => {
                 params.append("location", filters.location);
             }
 
-            // Make API call to Spring Boot application
-            const response = await fetch(`${API_BASE_URL}/search?${params}`, {
+            const searchUrl = `${API_BASE_URL}/search?${params}`;
+            debugLog('SEARCH_URL', 'Final search URL', { searchUrl });
+
+            // Use AbortController for better request handling
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => {
+                debugLog('SEARCH_TIMEOUT', 'Request timeout triggered');
+                controller.abort();
+            }, 10000);
+
+            debugLog('SEARCH_FETCH_START', 'Starting fetch request');
+
+            const response = await fetch(searchUrl, {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
-                    // Add any authentication headers if needed
-                    // 'Authorization': `Bearer ${token}`,
                 },
+                signal: controller.signal,
+            });
+
+            clearTimeout(timeoutId);
+            
+            debugLog('SEARCH_RESPONSE', 'Fetch response received', {
+                status: response.status,
+                statusText: response.statusText,
+                ok: response.ok,
+                headers: Array.from(response.headers.entries())
             });
 
             if (!response.ok) {
@@ -41,52 +102,89 @@ export const useSearch = () => {
             }
 
             const data = await response.json();
-            setResults(data);
+            debugLog('SEARCH_DATA', 'Response data parsed', {
+                dataType: typeof data,
+                isArray: Array.isArray(data),
+                length: data?.length,
+                data: data
+            });
+
+            // Use functional update to ensure state consistency
+            setResults(prevResults => {
+                debugLog('SEARCH_RESULTS_UPDATE', 'Updating results state', {
+                    prevResults,
+                    newData: data,
+                    prevLength: prevResults?.length,
+                    newLength: data?.length
+                });
+                return data;
+            });
+            
+            debugLog('SEARCH_SUCCESS', 'Search completed successfully');
+            
         } catch (err) {
-            console.error("Search error:", err);
-            setError(err instanceof Error ? err.message : "An unexpected error occurred");
+            debugLog('SEARCH_ERROR', 'Search error occurred', {
+                errorName: err.name,
+                errorMessage: err.message,
+                errorStack: err.stack,
+                isAbortError: err.name === 'AbortError',
+                isFetchError: err.message.includes("fetch") || err.message.includes("Failed to fetch"),
+                isNetworkError: err instanceof TypeError && err.message.includes('fetch')
+            });
+
+            if (err.name === 'AbortError') {
+                setError("Search timed out. Please try again.");
+                debugLog('SEARCH_TIMEOUT_ERROR', 'Setting timeout error');
+            } else {
+                const errorMsg = err instanceof Error ? err.message : "An unexpected error occurred";
+                setError(errorMsg);
+                debugLog('SEARCH_GENERAL_ERROR', 'Setting general error', { errorMsg });
+            }
 
             // For demo purposes, return mock data when API is not available
-            if (err instanceof Error && err.message.includes("fetch")) {
+            const shouldUseMock = err instanceof Error && (
+                err.message.includes("fetch") || 
+                err.message.includes("Failed to fetch") ||
+                err.message.includes("NetworkError") ||
+                err.message.includes("net::ERR_") ||
+                err.name === 'TypeError'
+            );
+
+            if (shouldUseMock) {
+                debugLog('SEARCH_MOCK_FALLBACK', 'Using mock data fallback');
                 setError(null);
-                setResults(getMockResults(query));
+                const mockResults = getMockResults(query);
+                debugLog('SEARCH_MOCK_DATA', 'Generated mock results', {
+                    mockResultsLength: mockResults.length,
+                    mockResults
+                });
+                setResults(mockResults);
             }
         } finally {
+            debugLog('SEARCH_FINALLY', 'Setting loading to false');
             setLoading(false);
         }
-    }, []);
+    }, [loading]);
 
-    // OPTIMIZED: Synchronous clear function for instant results
+    // Optimized clear function with immediate state updates
     const resetSearch = useCallback(() => {
-        // Use React's synchronous state updates with functional updates
-        // This ensures immediate state changes without waiting for re-renders
-        setResults(() => []);
-        setHasSearched(() => false);
-        setError(() => null);
-        setLoading(() => false);
-    }, []);
-
-    // Alternative: Batch state updates for even better performance
-    const clearResults = useCallback(() => {
-        // Batch multiple state updates to minimize re-renders
+        debugLog('SEARCH_RESET', 'Resetting search state');
         setResults([]);
         setHasSearched(false);
         setError(null);
         setLoading(false);
     }, []);
 
-    // PERFORMANCE: Use flushSync for immediate DOM updates if needed
-    const instantClear = useCallback(() => {
-        // Import flushSync from react-dom if you need immediate DOM updates
-        // import { flushSync } from 'react-dom';
-
-        // flushSync(() => {
-        setResults([]);
-        setHasSearched(false);
-        setError(null);
-        setLoading(false);
-        // });
-    }, []);
+    // Debug current state whenever it changes
+    React.useEffect(() => {
+        debugLog('SEARCH_STATE_CHANGE', 'Search state updated', {
+            resultsLength: results.length,
+            loading,
+            error,
+            hasSearched,
+            results: results.slice(0, 2) // Only log first 2 results to avoid spam
+        });
+    }, [results, loading, error, hasSearched]);
 
     return {
         results,
@@ -94,67 +192,50 @@ export const useSearch = () => {
         error,
         hasSearched,
         searchApi,
-        clearResults,
         resetSearch,
-        instantClear, // For the fastest possible clear
     };
 };
 
-// Mock data for demo purposes when Spring Boot API is not available
+// Mock data function with debugging
 const getMockResults = (query) => {
+    debugLog('MOCK_DATA_START', 'Generating mock data', { query });
+    
     const mockResults = [
         {
             id: "1",
-            name: "John Smith",
+            name: "Shaun Cushman",
             address: {
                 street: "123 Main Street",
-                city: "New York",
-                state: "NY",
-                zipCode: "10001",
+                city: "Bothell",
+                state: "WA",
+                zipCode: "12345",
                 country: "United States",
             },
-            email: "john.smith@email.com",
-            phone: "+1 (555) 123-4567",
+            email: "test@email.com",
+            phone: "+1 (111) 111-1111",
             type: "person",
-            lastUpdated: "2024-01-15T10:30:00Z",
+            lastUpdated: "2025-06-13T10:30:00Z",
             generalNotes: "test",
         },
         {
             id: "2",
-            name: "Acme Corporation",
+            name: "Shauna Cashman",
             address: {
-                street: "456 Business Ave",
-                city: "Los Angeles",
-                state: "CA",
-                zipCode: "90210",
+                street: "321 NE Test St",
+                city: "Maple Valey",
+                state: "WA",
+                zipCode: "54321",
                 country: "United States",
             },
-            email: "contact@acme.com",
-            phone: "+1 (555) 987-6543",
-            type: "business",
-            lastUpdated: "2024-01-20T14:45:00Z",
-            generalNotes: "test",
-        },
-        {
-            id: "3",
-            name: "Sarah Johnson",
-            address: {
-                street: "789 Oak Street",
-                city: "Chicago",
-                state: "IL",
-                zipCode: "60601",
-                country: "United States",
-            },
-            email: "sarah.johnson@email.com",
-            phone: "+1 (555) 246-8135",
+            email: "shaunacashman@email.com",
+            phone: "+1 (123) 456-7890",
             type: "person",
-            lastUpdated: "2024-01-18T09:15:00Z",
+            lastUpdated: "2024-09-24T09:15:00Z",
             generalNotes: "test",
         },
     ];
 
-    // Simple filter based on query
-    return mockResults.filter(
+    const filteredResults = mockResults.filter(
         (result) =>
             result.name.toLowerCase().includes(query.toLowerCase()) ||
             (result.address &&
@@ -162,4 +243,13 @@ const getMockResults = (query) => {
                     value.toLowerCase().includes(query.toLowerCase())
                 ))
     );
+
+    debugLog('MOCK_DATA_FILTERED', 'Mock data filtered', {
+        originalCount: mockResults.length,
+        filteredCount: filteredResults.length,
+        query: query.toLowerCase(),
+        filteredResults
+    });
+
+    return filteredResults;
 };
