@@ -1,5 +1,5 @@
 import React from 'react';
-import '../AddDataModal.css';
+import './FormSection.css';
 
 const FormSection = ({ children, className = '' }) => {
     return (

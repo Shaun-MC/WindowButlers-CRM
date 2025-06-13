@@ -1,0 +1,140 @@
+/* Form Groups */
+.form-group {
+    flex: 1;
+    min-width: 0;
+}
+
+.form-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #000000;
+    margin-bottom: 0.5rem;
+}
+
+.form-input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 2px solid #e2e8f0;
+    border-radius: 0.5rem;
+    font-size: 16px !important;
+    /* CRITICAL: Prevent zoom on iOS Safari - must be 16px or larger */
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    background: white;
+    /* Complete iOS Safari zoom prevention */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+    /* Text size adjustment prevention */
+    -webkit-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    /* Prevent iOS Safari input focus zoom */
+    transform: scale(1);
+    transform-origin: left top;
+    /* Fix iOS Safari blue text issue */
+    color: #8d97a8 !important;
+    -webkit-text-fill-color: #374151 !important;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: #3182ce;
+    box-shadow: 0 0 0 3px rgba(49, 130, 206, 0.1);
+    /* Ensure no zoom on focus */
+    font-size: 16px !important;
+    -webkit-text-size-adjust: 100%;
+    transform: scale(1);
+}
+
+.form-input::placeholder {
+    color: #9ca3af;
+    font-size: 16px !important;
+    /* Ensure placeholder also prevents zoom */
+    -webkit-text-size-adjust: 100%;
+}
+
+/* Required Indicator Icon */
+.required-indicator {
+    color: #f59e0b;
+    cursor: help;
+    display: flex;
+    align-items: center;
+    width: 14px;
+    height: 14px;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .form-input {
+        /* CRITICAL: Ensure font-size is 16px to prevent zoom */
+        font-size: 16px !important;
+        /* Complete iOS Safari zoom prevention on mobile */
+        -webkit-text-size-adjust: 100% !important;
+        -moz-text-size-adjust: 100% !important;
+        -ms-text-size-adjust: 100% !important;
+        text-size-adjust: 100% !important;
+        transform: scale(1) !important;
+        /* Fix iOS Safari blue text issue on mobile */
+        color: #374151 !important;
+        -webkit-text-fill-color: #374151 !important;
+    }
+
+    .form-input:focus {
+        /* Ensure no zoom on focus for mobile */
+        font-size: 16px !important;
+        -webkit-text-size-adjust: 100% !important;
+        transform: scale(1) !important;
+    }
+
+    .form-input::placeholder {
+        /* Ensure placeholder prevents zoom on mobile */
+        font-size: 16px !important;
+        -webkit-text-size-adjust: 100% !important;
+    }
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+
+    /* Extra zoom prevention for very small screens */
+    .form-input {
+        font-size: 16px !important;
+        -webkit-text-size-adjust: 100% !important;
+        transform: scale(1) !important;
+    }
+
+    .form-input:focus {
+        font-size: 16px !important;
+        -webkit-text-size-adjust: 100% !important;
+        transform: scale(1) !important;
+    }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+    .form-input {
+        border: 2px solid #000;
+    }
+
+    .form-input:focus {
+        border-color: #0066cc;
+        box-shadow: 0 0 0 2px #0066cc;
+    }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    .form-input {
+        transition: none;
+    }
+}

@@ -1,6 +1,6 @@
 import React from 'react';
 import { FormSection } from './FormSection';
-import '../AddDataModal.css';
+import './PlaceholderForm.css'; 
 
 const PlaceholderForm = ({ dataType, showEmpty = false }) => {
     return (

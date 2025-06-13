@@ -2,6 +2,7 @@ import React from 'react';
 import FormInputGroup from './FormInputGroup.jsx';
 import RadioGroup from '../input/RadioGroup.jsx';
 import { FormSection, FormRow } from './FormSection';
+import './HomeForm.css';
 
 const HomeForm = ({ formData, onInputChange }) => {
     const handleInputChange = (field) => (e) => {

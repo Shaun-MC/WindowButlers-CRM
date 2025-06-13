@@ -1,5 +1,5 @@
 import React from 'react';
-import '../AddDataModal.css';
+import './RadioGroup.css';
 
 const RadioGroup = ({
     label,

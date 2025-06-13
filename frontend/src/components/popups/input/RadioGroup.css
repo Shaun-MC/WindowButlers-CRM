@@ -1,0 +1,137 @@
+/* Radio Group Styles */
+.radio-group {
+    margin-bottom: 1.5rem;
+}
+
+.radio-label-wrapper {
+    margin-bottom: 0.75rem;
+}
+
+.radio-group-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #374151;
+}
+
+.radio-options {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.radio-option {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    font-size: 0.875rem;
+    color: #374151;
+    transition: color 0.2s ease;
+}
+
+.radio-option:hover {
+    color: #1f2937;
+}
+
+.radio-input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.radio-custom {
+    position: relative;
+    width: 18px;
+    height: 18px;
+    border: 2px solid #d1d5db;
+    border-radius: 50%;
+    background: white;
+    flex-shrink: 0;
+}
+
+.radio-custom::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #3182ce;
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform 0.2s ease;
+}
+
+.radio-input:checked+.radio-custom {
+    border-color: #3182ce;
+}
+
+.radio-input:checked+.radio-custom::after {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.radio-input:focus+.radio-custom {
+    box-shadow: 0 0 0 1px rgba(49, 130, 206, 0.1);
+}
+
+.radio-text {
+    font-size: 0.875rem;
+    color: #374151;
+    user-select: none;
+}
+
+/* Required Indicator Icon */
+.required-indicator {
+    color: #f59e0b;
+    cursor: help;
+    display: flex;
+    align-items: center;
+    width: 14px;
+    height: 14px;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .radio-options {
+        gap: 1rem;
+    }
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+
+    /* Stack radio options vertically on very small screens */
+    .radio-options {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+    .radio-custom {
+        border: 2px solid #000;
+    }
+
+    .radio-input:checked+.radio-custom {
+        border-color: #000;
+    }
+
+    .radio-input:checked+.radio-custom::after {
+        background: #000;
+    }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+
+    .radio-custom,
+    .radio-custom::after {
+        transition: none;
+    }
+}

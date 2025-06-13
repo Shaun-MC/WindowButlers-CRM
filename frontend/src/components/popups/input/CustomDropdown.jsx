@@ -1,6 +1,6 @@
 import React from 'react';
-import {ReactComponent as SelectChevron} from '../../../icons/chevron.svg';
-import '../AddDataModal.css';
+import { ReactComponent as SelectChevron } from '../../../icons/chevron.svg';
+import './CustomDropdown.css';
 
 const CustomDropdown = ({
     label,

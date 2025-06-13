@@ -1,6 +1,6 @@
 import React from 'react';
 import { ReactComponent as CloseIcon } from '../../icons/x.svg';
-import './AddDataModal.css';
+import './ModalBase.css';
 
 const ModalBase = ({ isOpen, onClose, title, children, maxWidth = '600px' }) => {
     const handleOverlayClick = (e) => {

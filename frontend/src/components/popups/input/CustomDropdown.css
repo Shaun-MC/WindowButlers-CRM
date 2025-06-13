@@ -1,0 +1,141 @@
+/* Dropdown Row */
+.dropdown-row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    /* Reduced from 2rem for closer spacing */
+}
+
+.dropdown-label {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #374151;
+    margin: 0;
+    flex-shrink: 0;
+}
+
+/* Select wrapper to position chevron */
+.select-wrapper {
+    position: relative;
+    display: inline-block;
+    width: 200px;
+}
+
+.form-select {
+    width: 100%;
+    /* Full width of wrapper */
+    padding: 0.75rem 2.5rem 0.75rem 1rem;
+    /* Added right padding for chevron */
+    border: 2px solid #e2e8f0;
+    border-radius: 0.5rem;
+    font-size: 16px !important;
+    /* CRITICAL: Prevent zoom on iOS Safari - must be 16px or larger */
+    background: white;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    cursor: pointer;
+    /* Complete iOS Safari zoom prevention */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    /* Text size adjustment prevention */
+    -webkit-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    /* Fix iOS Safari blue text issue */
+    color: #374151 !important;
+    -webkit-text-fill-color: #374151 !important;
+}
+
+.form-select:focus {
+    outline: none;
+    border-color: #3182ce;
+    box-shadow: 0 0 0 3px rgba(49, 130, 206, 0.1);
+}
+
+/* Custom chevron icon */
+.select-chevron {
+    position: absolute;
+    right: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: #6b7280;
+    width: 20px;
+    height: 20px;
+    stroke-width: 2;
+}
+
+/* Rotate chevron when select is focused */
+.form-select:focus+.select-chevron {
+    transform: translateY(-50%) rotate(180deg);
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .dropdown-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .select-wrapper {
+        width: 100%;
+    }
+
+    .form-select {
+        /* CRITICAL: Ensure font-size is 16px to prevent zoom */
+        font-size: 16px !important;
+        /* Complete iOS Safari zoom prevention on mobile */
+        -webkit-text-size-adjust: 100% !important;
+        -moz-text-size-adjust: 100% !important;
+        -ms-text-size-adjust: 100% !important;
+        text-size-adjust: 100% !important;
+        transform: scale(1) !important;
+        /* Fix iOS Safari blue text issue on mobile */
+        color: #374151 !important;
+        -webkit-text-fill-color: #374151 !important;
+    }
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+
+    /* Extra zoom prevention for very small screens */
+    .form-select {
+        font-size: 16px !important;
+        -webkit-text-size-adjust: 100% !important;
+        transform: scale(1) !important;
+    }
+
+    .form-select:focus {
+        font-size: 16px !important;
+        -webkit-text-size-adjust: 100% !important;
+        transform: scale(1) !important;
+    }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+    .form-select {
+        border: 2px solid #000;
+    }
+
+    .form-select:focus {
+        border-color: #0066cc;
+        box-shadow: 0 0 0 2px #0066cc;
+    }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    .form-select {
+        transition: none;
+    }
+}

@@ -1,6 +1,6 @@
 import React from 'react';
 import { ReactComponent as RequiredIcon } from '../../../icons/exclamation-circle.svg';
-import '../AddDataModal.css';
+import './FormInputGroup.css';
 
 const FormInputGroup = ({
     label,

@@ -1,0 +1,95 @@
+/* Home Association Section */
+.home-association-section {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #f1f5f9;
+}
+
+.home-options {
+    margin-top: 1rem;
+    margin-left: 1rem;
+}
+
+/* Home Form Styles */
+.home-form {
+    margin-top: 1rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #f1f5f9;
+}
+
+.zip-code-input {
+    flex: 0 0 200px;
+}
+
+.state-country-info {
+    flex: 1;
+    display: flex;
+    align-items: end;
+    padding-bottom: 0.75rem;
+}
+
+.info-text {
+    font-size: 0.875rem;
+    color: #6b7280;
+    font-style: italic;
+}
+
+/* Holiday Lights Section */
+.holiday-lights-section {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #f1f5f9;
+}
+
+.section-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #1f2937;
+    margin: 0 0 0.5rem 0;
+}
+
+.section-subtitle {
+    font-size: 0.875rem;
+    color: #6b7280;
+    margin-bottom: 1rem;
+    line-height: 1.5;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+
+    /* Mobile Home Form adjustments */
+    .zip-code-input {
+        flex: 1;
+    }
+
+    .state-country-info {
+        flex: 1;
+        align-items: center;
+        padding-bottom: 0;
+        margin-top: 0.5rem;
+    }
+
+    .info-text {
+        font-size: 0.8125rem;
+    }
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+
+    /* Adjust sections for small mobile */
+    .home-association-section,
+    .holiday-lights-section {
+        margin-top: 1.5rem;
+        padding-top: 1rem;
+    }
+
+    .section-title {
+        font-size: 1rem;
+    }
+
+    .section-subtitle {
+        font-size: 0.8125rem;
+    }
+}
