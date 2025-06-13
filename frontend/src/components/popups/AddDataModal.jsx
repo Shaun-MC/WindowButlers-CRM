@@ -7,16 +7,23 @@ import { FormSection, FormActions } from './forms/FormSection.jsx';
 import './AddDataModal.css';
 
 const AddDataModal = ({ onClose }) => {
-    const [selectedType, setSelectedType] = useState('Client');
+    const [selectedType, setSelectedType] = useState('');
     const [formData, setFormData] = useState({
         firstName: '',
         lastName: '',
         email: '',
-        phoneNumber: ''
+        phoneNumber: '',
+        associateWithHome: '',
+        homeOption: '',
+        streetAddress: '',
+        city: '',
+        zipCode: '',
+        holidayLights: ''
     });
 
     // Dropdown options configuration
     const dataTypeOptions = [
+        { value: '', label: '-- Select --' },
         { value: 'Client', label: 'Client' },
         { value: 'Home', label: 'Home' },
         { value: 'Job', label: 'Job' },
@@ -37,7 +44,13 @@ const AddDataModal = ({ onClose }) => {
             firstName: '',
             lastName: '',
             email: '',
-            phoneNumber: ''
+            phoneNumber: '',
+            associateWithHome: '',
+            homeOption: '',
+            streetAddress: '',
+            city: '',
+            zipCode: '',
+            holidayLights: ''
         });
     };
 
@@ -57,8 +70,10 @@ const AddDataModal = ({ onClose }) => {
                         onInputChange={handleInputChange}
                     />
                 );
+            case '':
+                return <PlaceholderForm dataType={selectedType} showEmpty={true} />;
             default:
-                return <PlaceholderForm dataType={selectedType} />;
+                return <PlaceholderForm dataType={selectedType} showEmpty={false} />;
         }
     };
 
@@ -94,8 +109,9 @@ const AddDataModal = ({ onClose }) => {
                     <button
                         type="submit"
                         className="btn btn-primary"
+                        disabled={!selectedType}
                     >
-                        Add {selectedType}
+                        Add {selectedType || 'Data'}
                     </button>
                 </FormActions>
             </form>

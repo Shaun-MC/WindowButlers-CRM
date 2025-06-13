@@ -1,11 +1,27 @@
 import React from 'react';
-import FormInputGroup from './FormInputGroup';
-import { FormSection, FormRow, FormCaption } from './FormSection';
+import FormInputGroup from './FormInputGroup.jsx';
+import RadioGroup from '../input/RadioGroup.jsx';
+import HomeForm from './HomeForm';
+import { FormSection, FormRow, FormCaption } from './FormSection.jsx';
 
 const ClientForm = ({ formData, onInputChange }) => {
     const handleInputChange = (field) => (e) => {
         onInputChange(field, e.target.value);
     };
+
+    const handleRadioChange = (field) => (value) => {
+        onInputChange(field, value);
+    };
+
+    const yesNoOptions = [
+        { value: 'yes', label: 'Yes' },
+        { value: 'no', label: 'No' }
+    ];
+
+    const homeAssociationOptions = [
+        { value: 'existing', label: 'Existing' },
+        { value: 'create_new', label: 'Create New' }
+    ];
 
     return (
         <FormSection>
@@ -58,6 +74,38 @@ const ClientForm = ({ formData, onInputChange }) => {
                 text="One of the two must be input"
                 inline={true}
             />
+
+            {/* Home Association Section */}
+            <div className="home-association-section">
+                <RadioGroup
+                    label="Associate with a Home?"
+                    name="associateWithHome"
+                    value={formData.associateWithHome || ''}
+                    onChange={handleRadioChange('associateWithHome')}
+                    options={yesNoOptions}
+                />
+
+                {/* Show home options only if user selects Yes */}
+                {formData.associateWithHome === 'yes' && (
+                    <div className="home-options">
+                        <RadioGroup
+                            label=""
+                            name="homeOption"
+                            value={formData.homeOption || ''}
+                            onChange={handleRadioChange('homeOption')}
+                            options={homeAssociationOptions}
+                        />
+                    </div>
+                )}
+            </div>
+
+            {/* Show HomeForm if Create New is selected */}
+            {formData.associateWithHome === 'yes' && formData.homeOption === 'create_new' && (
+                <HomeForm
+                    formData={formData}
+                    onInputChange={onInputChange}
+                />
+            )}
         </FormSection>
     );
 };
